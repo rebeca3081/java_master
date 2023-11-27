@@ -94,6 +94,11 @@ public class Game369 {
 			}
 		}
 		
+		// for...
+		for(int i = 0; i <= 10; i++) {
+			System.out.println("馬馬馬馬");
+		}
+		
 		
 		
 		
