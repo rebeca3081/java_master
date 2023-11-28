@@ -3,5 +3,5 @@ package chap5;
 public class Student {
 	String name;
 	int score;
-	String gender; // ³² or ¿©
+	String gender; // ë‚¨ or ì—¬
 }

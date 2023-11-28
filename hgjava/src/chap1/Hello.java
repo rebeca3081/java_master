@@ -1,11 +1,11 @@
 package chap1;
 
 import java.io.IOException;
-import java.util.Scanner; // ctrl + shift + O ´ÜÃàÅ°
+import java.util.Scanner; // ctrl + shift + O ë‹¨ì¶•í‚¤
 
 public class Hello {
 
-	public static void main(String[] args) throws IOException { // ¿¹¿Ü¹ß»ı ½Ã È£Ãâ¿¡¼­ Ã³¸®ÇØÁà
+	public static void main(String[] args) throws IOException { // ì˜ˆì™¸ë°œìƒ ì‹œ í˜¸ì¶œì—ì„œ ì²˜ë¦¬í•´ì¤˜
 		System.out.println("hello java~!");
 		
 		int x = 5;
@@ -16,28 +16,28 @@ public class Hello {
 		System.out.println(z);
 		System.out.println("y = " + y);
 		
-		// º¯¼öÀÇ °ª ±³È¯
+		// ë³€ìˆ˜ì˜ ê°’ êµí™˜
 		x = 3;
 		y = 10;
 		int temp = x;
 		x = y;
 		y = temp;
 		
-		// Ãâ·Â
+		// ì¶œë ¥
 		System.out.println("x = " + x + ", y = " + y);
 		
-		// ±âº» Å¸ÀÔ
-		// Å©±â ¼ø¼­ byte < short < char(À½¼öx) < int < long
+		// ê¸°ë³¸ íƒ€ì…
+		// í¬ê¸° ìˆœì„œ byte < short < char(ìŒìˆ˜x) < int < long
 		
 		char charData = 'A'; // 65
-		int intData = charData; // 65¸¦ ÀúÀå
+		int intData = charData; // 65ë¥¼ ì €ì¥
 		System.out.println("char : " + charData + " int : " + intData);
 		
 		
 		char c1 = 'a';
-		int c2 = c1 + 2; // ÀÚµ¿Å¸ÀÔ º¯È¯
-		char c3 = (char) c2; // °­Á¦Å¸ÀÔ º¯È¯
-		System.out.printf("c2°ªÀº : %-6d, c3°ªÀº : %3s\n", c2, c3);
+		int c2 = c1 + 2; // ìë™íƒ€ì… ë³€í™˜
+		char c3 = (char) c2; // ê°•ì œíƒ€ì… ë³€í™˜
+		System.out.printf("c2ê°’ì€ : %-6d, c3ê°’ì€ : %3s\n", c2, c3);
 		
 		x = 5;
 		y = 2;
@@ -46,10 +46,10 @@ public class Hello {
 		
 		double v1 = 3.5;
 		double v2 = 2.7;
-		int result2 = (int) (v1 + v2); // +¿¬»ê ¸ÕÀúÇÑ ÈÄ int·Î º¯È¯
+		int result2 = (int) (v1 + v2); // +ì—°ì‚° ë¨¼ì €í•œ í›„ intë¡œ ë³€í™˜
 		System.out.println(result2);
 		
-		// È®ÀÎ¹®Á¦ 9
+		// í™•ì¸ë¬¸ì œ 9
 		long var1 = 2l;
 		float var2 = 1.8f;
 		double var3 = 2.5;
@@ -57,8 +57,8 @@ public class Hello {
 		int result3 = (int) (var1 + var2 + var3) + (int) (Double.parseDouble(var4));
 		System.out.println(result3);
 		
-		// Ç¥ÁØÀÔ·Â Å°º¸µå = > System.in.read()
-		// ÇÏ³ªÀÇ ±ÛÀÚ¸¸ ÀĞ¾îµå¸²
+		// í‘œì¤€ì…ë ¥ í‚¤ë³´ë“œ = > System.in.read()
+		// í•˜ë‚˜ì˜ ê¸€ìë§Œ ì½ì–´ë“œë¦¼
 //		int keyCode;
 //		
 //		while(true) {
@@ -68,25 +68,25 @@ public class Hello {
 //				break;
 //			}
 //		}
-//		System.out.println("Á¾·á");
+//		System.out.println("ì¢…ë£Œ");
 		
 		
-		// ¹®ÀÚ¿­ ÀÔ·Â -> Scanner Å¬·¡½ºÀÌ¿ë -> °´Ã¼¸¦ »ı¼º ÇØ¼­ »ç¿ë
+		// ë¬¸ìì—´ ì…ë ¥ -> Scanner í´ë˜ìŠ¤ì´ìš© -> ê°ì²´ë¥¼ ìƒì„± í•´ì„œ ì‚¬ìš©
 		String scinput;
 		Scanner sc = new Scanner(System.in);
 		while(true) {
-			System.out.print("ÀÌ¸§ ÀÔ·Â : ");
+			System.out.print("ì´ë¦„ ì…ë ¥ : ");
 			scinput = sc.nextLine();
 			if(scinput.equals("q")){
 				break;
 			}
-			System.out.println("³» ÀÌ¸§Àº " + scinput);
+			System.out.println("ë‚´ ì´ë¦„ì€ " + scinput);
 		}
-		System.out.println("Á¾·á");
+		System.out.println("ì¢…ë£Œ");
 		
-		System.out.print("¼ö ÀÔ·Â : ");
+		System.out.print("ìˆ˜ ì…ë ¥ : ");
 		scinput = sc.nextLine();
-		System.out.println(Integer.parseInt(scinput) + 10); // ±âº»ÀÌ String -> Á¤¼ö·Î º¯È¯½ÃÄÑÁÜ
+		System.out.println(Integer.parseInt(scinput) + 10); // ê¸°ë³¸ì´ String -> ì •ìˆ˜ë¡œ ë³€í™˜ì‹œì¼œì¤Œ
 		
 		
 		

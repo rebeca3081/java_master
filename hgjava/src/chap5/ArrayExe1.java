@@ -3,24 +3,24 @@ package chap5;
 public class ArrayExe1 {
 	public static void main(String[] args) {
 		int a = 10;
-		int[] ary = { 10, 20, 33, 25, 34 }; // ¼±¾ğ°ú µ¿½Ã¿¡ °ª ³Ö±â
+		int[] ary = { 10, 20, 33, 25, 34 }; // ì„ ì–¸ê³¼ ë™ì‹œì— ê°’ ë„£ê¸°
 		int sum = 0;
 		// sum = ary[0] + ary[1] + ary[2];
 		for(int i = 0; i < ary.length; i++) { // ArrayIndexOutOfBoundsException
 			sum = sum + ary[i];
 		}
-		System.out.println("ÇÕ°è´Â " + sum + "ÀÔ´Ï´Ù.");
+		System.out.println("í•©ê³„ëŠ” " + sum + "ì…ë‹ˆë‹¤.");
 		
 		int[] intAry = new int[5];
-		System.out.println(intAry[0]); // 0À¸·Î ÃÊ±âÈ­ µÇ¾îÀÖÀ½
+		System.out.println(intAry[0]); // 0ìœ¼ë¡œ ì´ˆê¸°í™” ë˜ì–´ìˆìŒ
 		
 		double[] heights = new double[3];
-		System.out.println(heights[0]); // 0.0À¸·Î ÃÊ±âÈ­ µÇ¾îÀÖÀ½
+		System.out.println(heights[0]); // 0.0ìœ¼ë¡œ ì´ˆê¸°í™” ë˜ì–´ìˆìŒ
 		
-		String[] names = new String[10]; // 10°³ÀÇ °ø°£ ¹è¿­À» »ı¼º
-		names[0] = "È«±æµ¿"; //º¯¼öÀÌ¸§[ÀÎµ¦½º¹øÈ£] = °ª;
-		names[1] = "±è±æµ¿";
+		String[] names = new String[10]; // 10ê°œì˜ ê³µê°„ ë°°ì—´ì„ ìƒì„±
+		names[0] = "í™ê¸¸ë™"; //ë³€ìˆ˜ì´ë¦„[ì¸ë±ìŠ¤ë²ˆí˜¸] = ê°’;
+		names[1] = "ê¹€ê¸¸ë™";
 		System.out.println(names[0]);
-		System.out.println(names[2]); // ºó°ø°£¸¸ ÀÖÀ¸¸é null·Î Ã¤¿öÁü
+		System.out.println(names[2]); // ë¹ˆê³µê°„ë§Œ ìˆìœ¼ë©´ nullë¡œ ì±„ì›Œì§
 	}
 }

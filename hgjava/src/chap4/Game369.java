@@ -5,18 +5,18 @@ import java.util.Scanner;
 public class Game369 {
 
 	public static void main(String[] args) {
-		// 369°ÔÀÓ
-		// 1 ~ 50±îÁö
-		// 3, 6, 9ÀÇ °¹¼ö Ã¼Å© º¯¼ö
+		// 369ê²Œì„
+		// 1 ~ 50ê¹Œì§€
+		// 3, 6, 9ì˜ ê°¯ìˆ˜ ì²´í¬ ë³€ìˆ˜
 		int count = 0;
-		// ¼ıÀÚ´Â 1 ~ 50 ¹İº¹¹®
+		// ìˆ«ìëŠ” 1 ~ 50 ë°˜ë³µë¬¸
 		for(int i = 1; i <= 50; i++) {
-			count = 0; // ´ÙÀ½ ¼ö¸¦ À§ÇÑ ÃÊ±âÈ­
-			// ÀÏÀÇ ÀÚ¸®¿¡ 3,6,9 °¹¼öÃ¼Å© 
+			count = 0; // ë‹¤ìŒ ìˆ˜ë¥¼ ìœ„í•œ ì´ˆê¸°í™”
+			// ì¼ì˜ ìë¦¬ì— 3,6,9 ê°¯ìˆ˜ì²´í¬ 
 			if (i % 10 == 3 || i % 10 == 6 || i % 10 == 9) {
 				count++;
 			}
-			// ½ÊÀÇ ÀÚ¸®¿¡ 3,6,9 °¹¼öÃ¼Å© 
+			// ì‹­ì˜ ìë¦¬ì— 3,6,9 ê°¯ìˆ˜ì²´í¬ 
 			if (i / 10 == 3 || i / 10 == 6 || i / 10 == 9) {
 				count++;
 			}
@@ -24,21 +24,21 @@ public class Game369 {
 			case 0:
 				System.out.print(i + "\t"); break;
 			case 1:
-				System.out.print("¢¾\t"); break;
+				System.out.print("â™¥\t"); break;
 			case 2:
-				System.out.print("¢¾¢¾\t");
+				System.out.print("â™¥â™¥\t");
 			}
-			// ÇÑÁÙ¿¡ Ãâ·Â
+			// í•œì¤„ì— ì¶œë ¥
 			if(i % 10 == 0) {
-				System.out.println(); // ÁÙ¹Ù²Ş
+				System.out.println(); // ì¤„ë°”ê¿ˆ
 			}	
 		}
 		
-		// µ¿Àü ±³È¯
+		// ë™ì „ êµí™˜
 		Scanner sc = new Scanner(System.in);
-		System.out.print("##±³È¯ÇÒ ±İ¾× : ");
+		System.out.print("##êµí™˜í•  ê¸ˆì•¡ : ");
 		int money = sc.nextInt();
-		int Num500 = money / 500; // 500¿øÂ¥¸® °¹¼ö
+		int Num500 = money / 500; // 500ì›ì§œë¦¬ ê°¯ìˆ˜
 		int chage = money - (500 * Num500);
 		
 		int Num100 = chage / 100;
@@ -49,54 +49,54 @@ public class Game369 {
 		
 		int Num10 = chage3 / 10;
 		int chage4 = chage3 - (10 * Num10);
-		System.out.printf("500¿øÂ¥¸® : %d°³\n", Num500);
-		System.out.printf("100¿øÂ¥¸® : %d°³\n", Num100);
-		System.out.printf("50¿øÂ¥¸® : %d°³\n", Num50);
-		System.out.printf("10¿øÂ¥¸® : %d°³\n", Num10);
-		System.out.println("±³È¯ ±İ¾× : " + (int)((500*Num500) + (100*Num100) + (50*Num50) + (10*Num10)) + "¿ø");
-		System.out.println("³²Àº ±İ¾× : " + chage4 + "¿ø");
+		System.out.printf("500ì›ì§œë¦¬ : %dê°œ\n", Num500);
+		System.out.printf("100ì›ì§œë¦¬ : %dê°œ\n", Num100);
+		System.out.printf("50ì›ì§œë¦¬ : %dê°œ\n", Num50);
+		System.out.printf("10ì›ì§œë¦¬ : %dê°œ\n", Num10);
+		System.out.println("êµí™˜ ê¸ˆì•¡ : " + (int)((500*Num500) + (100*Num100) + (50*Num50) + (10*Num10)) + "ì›");
+		System.out.println("ë‚¨ì€ ê¸ˆì•¡ : " + chage4 + "ì›");
 		
-		// ´Ù½Ã
-		System.out.print("##±³È¯ÇÒ ±İ¾× : ");
+		// ë‹¤ì‹œ
+		System.out.print("##êµí™˜í•  ê¸ˆì•¡ : ");
 		int myMoney = sc.nextInt();
-		System.out.println("500¿ø Â¥¸® : " + (int)(myMoney / 500) + "°³");
+		System.out.println("500ì› ì§œë¦¬ : " + (int)(myMoney / 500) + "ê°œ");
 		
 		int reMoney = myMoney % 500;
-		System.out.println("100¿ø Â¥¸® : " + (int)(reMoney / 100) + "°³");
+		System.out.println("100ì› ì§œë¦¬ : " + (int)(reMoney / 100) + "ê°œ");
 		
 		reMoney = myMoney % 100;
-		System.out.println("50¿ø Â¥¸® : " + (int)(reMoney / 50) + "°³");
+		System.out.println("50ì› ì§œë¦¬ : " + (int)(reMoney / 50) + "ê°œ");
 		
 		reMoney = myMoney % 50;
-		System.out.println("10¿ø Â¥¸® : " + (int)(reMoney / 10) + "°³");
+		System.out.println("10ì› ì§œë¦¬ : " + (int)(reMoney / 10) + "ê°œ");
 		
-		// System.out.println("±³È¯ ±İ¾× : " + );
+		// System.out.println("êµí™˜ ê¸ˆì•¡ : " + );
 		
 		
-		// 3. ¼ıÀÚ ÃßÃø °ÔÀÓ
-		// 1~100±îÁö ¼ö¸¦ ¹ß»ı
+		// 3. ìˆ«ì ì¶”ì¸¡ ê²Œì„
+		// 1~100ê¹Œì§€ ìˆ˜ë¥¼ ë°œìƒ
 		int com = (int)(Math.random() * 100) + 1;
 		while(true) {
-			System.out.print("¼ıÀÚ ÀÔ·Â : ");
-			//³» ¼ıÀÚ¹Ş±â
+			System.out.print("ìˆ«ì ì…ë ¥ : ");
+			//ë‚´ ìˆ«ìë°›ê¸°
 			int myNumber = sc.nextInt();
-			// if (³»¼ıÀÚ == com) -> ÃàÇÏÇÕ´Ï´Ù break;
+			// if (ë‚´ìˆ«ì == com) -> ì¶•í•˜í•©ë‹ˆë‹¤ break;
 			if(myNumber == com) {
-				System.out.println("ÃàÇÏÇÕ´Ï´Ù~!!");
+				System.out.println("ì¶•í•˜í•©ë‹ˆë‹¤~!!");
 				break;
 			}else {
-				// if(³»¼ıÀÚ > com) -> ´Ù¿îÇÏ¼¼¿ä / ¾÷ÇÏ¼¼¿ä
+				// if(ë‚´ìˆ«ì > com) -> ë‹¤ìš´í•˜ì„¸ìš” / ì—…í•˜ì„¸ìš”
 				if(myNumber > com) {
-					System.out.println("downÇÏ¼¼¿ä");
+					System.out.println("downí•˜ì„¸ìš”");
 				}else {
-					System.out.println("upÇÏ¼¼¿ä");
+					System.out.println("upí•˜ì„¸ìš”");
 				}
 			}
 		}
 		
 		// for...
 		for(int i = 0; i <= 10; i++) {
-			System.out.println("ÇÏÇÏÇÏÇÏ");
+			System.out.println("í•˜í•˜í•˜í•˜");
 		}
 		
 		

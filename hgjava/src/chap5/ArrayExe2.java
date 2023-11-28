@@ -3,17 +3,17 @@ package chap5;
 public class ArrayExe2 {
 
 	public static void main(String[] args) {
-		// Á¤¼ö¸¦ ´ãÀ» ¼ö ÀÖ´Â ¹è¿­À» »ı¼º(Å©±â´Â 10°³ÀÇ Á¤¼ö¸¦ ÀúÀå)
-		// intAry -> 10 ~ 100 ÀúÀå
+		// ì •ìˆ˜ë¥¼ ë‹´ì„ ìˆ˜ ìˆëŠ” ë°°ì—´ì„ ìƒì„±(í¬ê¸°ëŠ” 10ê°œì˜ ì •ìˆ˜ë¥¼ ì €ì¥)
+		// intAry -> 10 ~ 100 ì €ì¥
 		int[] intAry = new int[10];
 		for(int i = 0; i < intAry.length; i++) {
 			intAry[i] = (i + 1) * 10;
 		}
-		// Ãâ·Â. È®Àåfor±¸¹® => º¯¼ö¸í : ¹è¿­¸íÀ¸·Î ¼±¾ğ (¹è¿­°ú ÄÃ·º¼Ç¿¡¼­¸¸ °¡´É)
-		int sum = 0; // 50º¸´Ù Å« ¼ö¸¦ ÀúÀå
+		// ì¶œë ¥. í™•ì¥forêµ¬ë¬¸ => ë³€ìˆ˜ëª… : ë°°ì—´ëª…ìœ¼ë¡œ ì„ ì–¸ (ë°°ì—´ê³¼ ì»¬ë ‰ì…˜ì—ì„œë§Œ ê°€ëŠ¥)
+		int sum = 0; // 50ë³´ë‹¤ í° ìˆ˜ë¥¼ ì €ì¥
 		double avg = 0;
 		int count = 0;
-		for(int num : intAry) { // p.197 ¹è¿­ÀÇ Ã³À½ºÎÅÍ ³¡°ª±îÁö ºÒ·¯¿Í¼­ numº¯¼ö¿¡ ÀúÀåÇÔ
+		for(int num : intAry) { // p.197 ë°°ì—´ì˜ ì²˜ìŒë¶€í„° ëê°’ê¹Œì§€ ë¶ˆëŸ¬ì™€ì„œ numë³€ìˆ˜ì— ì €ì¥í•¨
 			if(num > 50) {
 				sum += num;
 				count++;
@@ -21,8 +21,8 @@ public class ArrayExe2 {
 			System.out.println(num);
 		}
 		avg = sum / count;
-		System.out.println("50º¸´Ù Å« ¼öÀÇ ÇÕ°è: " + sum);
-		System.out.println("50º¸´Ù Å« ¼öÀÇ Æò±Õ: " + avg);
+		System.out.println("50ë³´ë‹¤ í° ìˆ˜ì˜ í•©ê³„: " + sum);
+		System.out.println("50ë³´ë‹¤ í° ìˆ˜ì˜ í‰ê· : " + avg);
 	}
 
 }
