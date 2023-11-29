@@ -9,9 +9,7 @@ public class Board {
 	private String date; //2023-11-28
 	// 배열필드
 	private Board[] boards;
-	
-	// 이부분수정
-	
+	// 이 부분이 변경되었습니다~
 	// 생성자
 	Board(){
 		boards = new Board[50];
