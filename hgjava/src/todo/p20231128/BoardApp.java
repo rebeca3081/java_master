@@ -52,10 +52,19 @@ public class BoardApp { // C(control)
 		}
 	} // end of boardList()
 
-	// 조회 메소드
+	// 상세조회 메소드
 	private void getBoard() {
-		System.out.println("글번호입력>> ");
-		int no = Integer.parseInt(sc.nextLine());
+		int no = 0;
+		while (true) {
+			System.out.println("글번호입력>> ");
+			// 예외처리
+			try {
+				no = Integer.parseInt(sc.nextLine());
+				break; // 정상적으로 입력하면 입력문을 빠져나오게해줌
+			} catch (NumberFormatException ee) { //(Exception e)
+				System.out.println("올바른 글 번호를 입력하세요");
+			}
+		}
 		Board result = BoardExe.getBoard(no);
 		if (result != null) {
 			System.out.println("-----------------------------------");
@@ -127,8 +136,13 @@ public class BoardApp { // C(control)
 		while (run) {
 			System.out.println("1.등록 2.목록 3.상세조회 4.수정 5.삭제 6.종료");
 			int menu = 0;
-			menu = sc.nextInt();
-			sc.nextLine();
+			// 예외처리
+			try {
+				menu = Integer.parseInt(sc.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.println("메뉴 번호를 입력하세요");
+				continue; // 밑으로 내려 가지 않고 다시 while문으로 돌아감
+			}
 
 			switch (menu) {
 			case 1: // 등록

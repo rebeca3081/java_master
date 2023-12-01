@@ -50,7 +50,7 @@ public class FriendApp {
 			String univ = sc.nextLine();
 			System.out.println("전공>>> ");
 			String major = sc.nextLine();
-			friend = new UnivFriend(name, phone, univ, major); // 부모는 자식의 인스턴스를 담을 수 있음
+			friend = new UnivFriend(name, phone, univ, major); // 부모는 자식의 인스턴스를 담을 수 있음(자동형변환)
 		} else if (subMenu == 3) { // 회사 : 이름, 연락처, 회사, 부서
 			System.out.println("회사>>> ");
 			String comp = sc.nextLine();
@@ -93,7 +93,7 @@ public class FriendApp {
 		} else if (subMenu == 2) {
 			System.out.println("연락처조회>> ");
 			searchCond = sc.nextLine();
-			exe.searchPhone(searchCond).showInfo();
+			System.out.println(exe.searchPhone(searchCond).showInfo());
 		} else {
 			System.out.println("1 또는 2 선택하세요");
 		}

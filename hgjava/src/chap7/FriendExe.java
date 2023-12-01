@@ -46,9 +46,9 @@ public class FriendExe {
 	// 조회 메소드2 : 연락처는 한 건만 반영
 	// 결과값이 null여부로 체크.
 	public Friend searchPhone(String phone) {
-		for (Friend fnd : storage) {
-			if (fnd != null && fnd.getPhone().equals(phone)) {
-				return fnd;
+		for (int i = 0; i < storage.length; i++) {
+			if (storage[i] != null && storage[i].getPhone().equals(phone)) {
+				return storage[i]; //Friend [name=w, phone=2]
 			}
 		}
 		return null;

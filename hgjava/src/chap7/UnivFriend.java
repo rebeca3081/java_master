@@ -1,6 +1,6 @@
 package chap7;
 
-// 자식: UnivFriend <- 부모: Friend
+// 자식: UnivFriend -> 부모: Friend
 
 public class UnivFriend extends Friend {
 	// 필드
