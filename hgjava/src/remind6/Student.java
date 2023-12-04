@@ -11,7 +11,7 @@ public class Student {
 	Student(){
 		
 	}
-	Student(String studentNo, String studentName, int scoreEng, int scoreMath){
+	public Student(String studentNo, String studentName, int scoreEng, int scoreMath){
 		this.studentNo = studentNo; // 이름이 같아서 this.필드로 구분
 		this.studentName = studentName;
 		this.scoreEng = scoreEng;
@@ -19,7 +19,7 @@ public class Student {
 	}
 	
 	//메소드 기능
-	void showInfo() {
+	public void showInfo() {
 		System.out.println("이름은 " + studentName + ", 영어는 " + scoreEng + "점, 수학은 " + scoreMath + "점입니다.");
 	}
 	
