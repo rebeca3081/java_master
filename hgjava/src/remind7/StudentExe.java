@@ -13,14 +13,10 @@ public class StudentExe {
 		students = new ArrayList<>();
 	}
 
-	// 기능1: 추가 -> 생각해보기 배열에 저장해야하나...? & null 값을 확인 안해도 되는데 굳이 boolean값으로?
-	boolean addStudent(String std) {
-		for (int i = 0; i < students.size(); i++) {
-				students.get(i).setStudentNo(std);				
-				return true;
-			}
-		return false;
-		}
+	// 기능1: 추가 -> Student 인스턴스를 가져와서 매개값으로 사용 -> 컬렉션배열에 인스턴스 추가
+	boolean addStudent(Student stut) {
+		return students.add(stut);
+	}
 
 	// 기능2: 목록반환
 	List<Student> getStudentList() {

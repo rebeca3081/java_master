@@ -8,8 +8,6 @@ import java.util.Scanner;
 //컬렉션으로 바꿔서 해보기
 public class StudentApp {
 	public static void main(String[] args) {
-		// 컬렉션 배열
-		List<Student> students = new ArrayList<>();
 		// StudentExe 인스턴스생성
 		StudentExe exe = new StudentExe();
 
@@ -28,9 +26,14 @@ public class StudentApp {
 				String name = inAry[1];
 				int eng = Integer.parseInt(inAry[2]);
 				int math = Integer.parseInt(inAry[3]);
+				
+				Student stut = new Student(no, name, eng, math);
+				if(exe.addStudent(stut)) {
+					System.out.println("등록완료");					
+				}else {
+					System.out.println("등록실패");
+				}
 
-				students.add(new Student(no, name, eng, math));
-				System.out.println("등록완료");
 				break;
 			case 2: // 목록
 				for(Student stnd : exe.getStudentList()) {
