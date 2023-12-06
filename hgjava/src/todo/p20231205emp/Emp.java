@@ -23,7 +23,7 @@ public class Emp {
 		this.enterDay = new Date();
 	}
 	// 생성자
-	Emp(String empNum, String empName, String phone, Date enterDay, int salary){
+	Emp(String empNum, String empName, String phone,  int salary, Date enterDay){
 		this.empNum = empNum;
 		this.empName = empName;
 		this.phone = phone;
