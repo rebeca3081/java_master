@@ -2,7 +2,7 @@ package todo.p20231205;
 
 public class Book {
 	// 필드
-	private String bookCode; // B001, C003
+	private String bookCode; // B001, C003 => key 역할
 	private String bookName;
 	private String author; 
 	private String publisher;
@@ -54,7 +54,7 @@ public class Book {
 	
 	// 메소드
 	public void showInfo() {
-		System.out.println(bookCode + "  " + bookName + "  " + author + "  " + price);
+		System.out.println(bookCode + "\t" + bookName + "\t" + author + "\t" + price);
 	}
 
 }

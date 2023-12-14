@@ -9,6 +9,7 @@ public class StudentApp {
 		
 		Scanner sc = new Scanner(System.in);
 		StudentExe exe = new StudentExe(); // 기능메소드
+		StudentDAO dao = new StudentDAO(); // DB연결된 기능메소드
 		
 		while(run) {
 			System.out.println("1.등록 2.목록 3.단건조회 4.수정 5.삭제 6.종료");
@@ -27,14 +28,15 @@ public class StudentApp {
 				
 				Student std = new Student(no, name, eng, math); // 사용자 입력 매개값의 생성자가 있어야 에러 안남
 				// Students 배열에 한건 저장
-				if(exe.addStudent(std)) {
-					System.out.println("저장되었습니다 :)");					
+				if(dao.addStudent(std)) {
+					System.out.println("저장되었습니다 :)");		
 				}else {
 					System.out.println("저장 중 오류 :(");	
 				}
 				break;
 			case 2: // 목록보기
-				for(Student stdnt : exe.getStudentList()) {
+				Student[] stdAry = dao.getStudentList();
+				for(Student stdnt : stdAry) {
 					if(stdnt != null) {
 						stdnt.showInfo();
 					}
@@ -43,7 +45,7 @@ public class StudentApp {
 			case 3: // 단건조회
 				System.out.println("조회할 학생번호를 입력>>>> ");
 				no = sc.nextLine();
-				Student stnt = exe.getStudent(no); //★
+				Student stnt = dao.getStudent(no); //★
 				if(stnt != null) {
 					stnt.showInfo();
 				}else {
@@ -57,7 +59,7 @@ public class StudentApp {
 				eng = Integer.parseInt(sc.nextLine());
 				System.out.println("수정할 수학점수 입력>> ");
 				math = Integer.parseInt(sc.nextLine());
-				if(exe.modifyStudent(no, eng, math)){
+				if(dao.modifyStudent(no, eng, math)){
 					System.out.println("수정완료:)");
 				}else {
 					System.out.println("수정실패:(");					
@@ -66,7 +68,7 @@ public class StudentApp {
 			case 5: // 이름삭제
 				System.out.println("삭제할 이름입력>>");
 				name = sc.nextLine();
-				if(exe.removeStudent(name)) {
+				if(dao.removeStudent(name)) {
 					System.out.println("삭제완료 ;)");
 				}else {
 					System.out.println("삭제실패 :(");				

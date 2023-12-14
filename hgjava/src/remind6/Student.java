@@ -2,7 +2,7 @@ package remind6;
 
 public class Student {
 	// 필드
-	private String studentNo; // 23-001, 23-002
+	private String studentNo; // 23-001, 23-002 //오라클: 컬럼이름 -> student_no 
 	private String studentName;
 	private int scoreEng;
 	private int scoreMath;

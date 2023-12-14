@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookExe {
-	// 배열선언
+	// 컬렉션 배열선언
 	private ArrayList<Book> books; //★
 	
 	BookExe(){

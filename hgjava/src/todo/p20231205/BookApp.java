@@ -7,8 +7,9 @@ public class BookApp {
 
 	public static void main(String[] args) {
 		//컬렉션 배열
-		
 		BookExe exe = new BookExe();
+		//JDBC 연동된 기능들
+		BookDAO dao = new BookDAO();
 		
 		// 1.등록 2.목록 3.수정 4.삭제 5.종료
 		Scanner sc = new Scanner(System.in);
@@ -31,16 +32,16 @@ public class BookApp {
 				
 				Book bok = new Book(code, name, author, publisher, price);
 				
-				if(exe.addBook(bok)) {
-					System.out.println("저장되었습니다");					
+				if(dao.addBook(bok)) {
+					System.out.println("저장되었습니다");	
 				}else {
 					System.out.println("저장실패...");
 				}
 				
 				break;
 			case 2: // 전체목록
-				System.out.println("도서코드  도서명  저자  가격");
-				ArrayList<Book> bookAry = exe.getBookList();
+				// System.out.println("도서코드  도서명  저자  가격");
+				ArrayList<Book> bookAry = dao.getBookList();
 				for(Book book : bookAry) {
 					if(book != null) {
 						book.showInfo();
@@ -55,7 +56,7 @@ public class BookApp {
 				code = sc.nextLine();
 				System.out.println("2) 가격 입력>> ");
 				price = Integer.parseInt(sc.nextLine());
-				if(exe.modifyBook(code, price)) {
+				if(dao.modifyBook(code, price)) {
 					System.out.println("수정되었습니다");
 				}else {
 					System.out.println("수정실패...");
@@ -64,7 +65,7 @@ public class BookApp {
 			case 4: // 삭제
 				System.out.println("1) 도서코드 입력>> ");
 				code = sc.nextLine();
-				if(exe.removeBook(code)) {
+				if(dao.removeBook(code)) {
 					System.out.println("삭제되었습니다");					
 				}else {
 					System.out.println("삭제실패...");
