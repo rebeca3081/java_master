@@ -32,7 +32,8 @@ public class StudentDAO {
 	Student[] getStudentList() {
 		getConn();
 		Student[] students = new Student[10];
-		String sql = "select * from student order by 1";
+		String sql = "select * from student where student_name like '%'||'길동'||'%' order by 1"; 
+																 // '%'||?||'%' 로 사용하면 파라미터로 값을 받을 수 있음
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery(); // 조회
