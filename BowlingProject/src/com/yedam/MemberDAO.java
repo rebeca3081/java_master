@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 // 데이터 엑세스 오브젝트
@@ -30,7 +31,7 @@ public class MemberDAO {
 	ArrayList<Member> getMemberList(){
 		getConn();
 		System.out.println("==================================================================");
-		System.out.println("회원번호 \t 회원명 \t 전화번호 \t 가입날짜 \t 등급 \t 가입승인여부");
+		System.out.println("회원번호 \t 회원명 \t 전화번호  \t  가입날짜  \t 등급  \t  가입승인여부");
 		System.out.println("==================================================================");
 		
 		ArrayList<Member> members = new ArrayList<>();
@@ -59,8 +60,29 @@ public class MemberDAO {
 	// 추가
 	boolean addMember(Member mem) {
 		getConn();
+		String sql = "insert into members "
+						+ "values (?, ?, ?, ?, ?, ?)";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mem.getNo());
+			psmt.setString(2, mem.getName());
+			psmt.setString(3, mem.getPhone());
+			psmt.setString(4, sdf.format(mem.getJoin()));
+			psmt.setString(5, mem.getGrade());
+			psmt.setString(6, mem.getApproval());
+			
+			
+			int r = psmt.executeUpdate();
+			if(r == 1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return false;
-	}
+	} //end of addMember()
 	
 	
 }
