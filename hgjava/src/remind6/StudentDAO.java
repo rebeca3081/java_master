@@ -27,6 +27,23 @@ public class StudentDAO {
 		}
 		return conn;
 	}
+	
+	// 연결접속 해제 : listener 부족방지
+	void disConn() {
+		try {
+			if (conn != null) {
+				conn.close();
+			}
+			if (rs != null) {
+				rs.close();
+			}
+			if (psmt != null) {
+				psmt.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	// 목록.
 	Student[] getStudentList() {
@@ -54,6 +71,8 @@ public class StudentDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			disConn();
 		}
 		return students;
 	} // end of getStudentList()
@@ -76,6 +95,8 @@ public class StudentDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			disConn();
 		}
 		return false;
 	} // end of addStudent()
@@ -102,6 +123,8 @@ public class StudentDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			disConn();
 		}
 		return null; // 조회된 값이 없으면 null 값 반환.
 	} // end of getStudent()
@@ -127,6 +150,8 @@ public class StudentDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			disConn();
 		}
 		
 		return false;
@@ -149,6 +174,8 @@ public class StudentDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			disConn();
 		}
 		return false;
 	}

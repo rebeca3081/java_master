@@ -27,7 +27,7 @@ public class Member {
 
 	// 메소드
 	public void showInfo() {
-		System.out.println(no + "| \t" + name + "\t" + phone + "\t" + join + "\t" + grade + "\t" + approval);
+		System.out.println(no + " \t" + name + "\t" + phone + "\t" + join + "\t" + grade + "\t" + approval);
 	}
 
 	//getter,setter

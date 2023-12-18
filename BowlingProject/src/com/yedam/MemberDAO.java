@@ -27,6 +27,23 @@ public class MemberDAO {
 		return conn;
 	}
 	
+	// 연결접속 해제 : TNS listener 부족방지
+	void disConn() {
+		try {
+			if (conn != null) {
+				conn.close();
+			}
+			if (rs != null) {
+				rs.close();
+			}
+			if (psmt != null) {
+				psmt.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// 목록 반환기능
 	ArrayList<Member> getMemberList(){
 		getConn();
@@ -51,6 +68,8 @@ public class MemberDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			disConn();
 		}
 		
 		return members;
@@ -79,10 +98,108 @@ public class MemberDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			disConn();
 		}
-		
 		return false;
 	} //end of addMember()
 	
 	
-}
+	// 수정(2개월 지난 회원등급 일괄변경)
+	boolean modifyAllGrade() {
+		getConn();
+		String sql = "update  members "
+					+ "set     grade = '정회원' "
+					+ "where   trunc(months_between(sysdate, join_date)) >= 2 "
+					+ "and     grade = '준회원'";
+		try {
+			psmt = conn.prepareStatement(sql);
+			
+			int r = psmt.executeUpdate();
+			if(r > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConn();
+		}
+		
+		return false;
+	} //end of modifyAllGrade()
+	
+	// 시간이 된다면...추가해볼것 -> 등급변경할 회원 목록 조회 후 변경할 수 있도록 해보기
+	
+	
+	// 회원정보수정_1 : 회원번호으로 조회 -> 회원전화번호 수정
+	boolean modifyPhone(String num, String phonenum) {
+		getConn();
+		String sql = "update  members "
+					+ "set    member_phone =? "
+					+ "where  member_no =?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, phonenum);
+			psmt.setString(2, num);
+			
+			int r = psmt.executeUpdate();
+			if(r > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConn();
+		}
+		return false;
+	} //end of modifyPhone()
+	
+	
+	// 회원정보수정_2 : 회원번호으로 조회 -> 승인여부 수정
+	boolean modifyApprove(String num, String approve) {
+		getConn();
+		String sql = "update  members "
+					+ "set     approval =? "
+					+ "where   member_no =?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, approve);
+			psmt.setString(2, num);
+			
+			int r = psmt.executeUpdate();
+			if(r > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConn();
+		}
+		return false;
+	} //end of modifyApprove()
+	
+	
+	// 회원 삭제
+	boolean removeMember(String num) {
+		getConn();
+		String sql = "delete  from  members "
+					+ "where   member_no =?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, num);
+			
+			int r = psmt.executeUpdate();
+			if(r == 1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConn();
+		}
+		return false;
+	} // end of removeMember()
+	
+	
+	
+}//end of class
