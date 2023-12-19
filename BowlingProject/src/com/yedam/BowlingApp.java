@@ -16,19 +16,17 @@ public class BowlingApp {
 	public static void main(String[] args) throws Exception {
 		boolean run = true;
 
+		System.out.println("'제로'볼링클럽 관리프로그램을 실행합니다.");
 		while (run) {
-			System.out.println("'제로'볼링클럽 관리프로그램을 실행합니다.");
-			System.out.println("-------계정을 선택해주세요:)--------");
-			System.out.println("1.관리자(회장) | 2.일반회원 | 3.종료");
 			System.out.println("--------------------------------");
-			int menu = Integer.parseInt(sc.nextLine());
+			int menu = login(); // 로그인 메소드
+			
 
 			switch (menu) {
 			case 1: // 1.관리자
-				//login(); // 관리자의 ID, PW확인 메소드
 				boolean subRun = true;
 				while (subRun) {
-					System.out.println("1.회원관리 2.공지글 관리 3.계정선택으로 돌아가기");
+					System.out.println("1.회원관리 2.공지글 관리 3.로그인으로 돌아가기");
 					int subMenu = Integer.parseInt(sc.nextLine());
 					switch (subMenu) {
 					case 1: // 회원관리
@@ -37,7 +35,7 @@ public class BowlingApp {
 					case 2: // 공지글 관리
 						boradManageMenu(); // 공지글 관리 메소드
 						break;
-					case 3: // 돌아가기
+					case 3: // 로그인으로 돌아가기
 						subRun = false;
 					} // end of switch_subMenu
 				} // end of while_subRun
@@ -46,7 +44,7 @@ public class BowlingApp {
 			case 2: // 2.일반회원
 				subRun = true;
 				while (subRun) {
-					System.out.println("1.내 점수관리 2.공지글확인 및 댓글관리 3.내 댓글전체목록 4.계정선택으로 돌아가기");
+					System.out.println("1.내 점수관리 2.공지글확인 및 댓글관리 3.내 댓글전체목록 4.로그인으로 돌아가기");
 					int subMenu = Integer.parseInt(sc.nextLine());
 					switch (subMenu) {
 					case 1: // 내 점수관리
@@ -59,12 +57,12 @@ public class BowlingApp {
 						// 내댓글 전체 목록 메소드
 						showMyComment();
 						break;
-					case 4: // 돌아가기
+					case 4: // 로그인으로 돌아가기
 						subRun = false;
 					} // end of switch_subMenu
 				} // end of while_subRun
 				break;
-			case 3:
+			case 7:
 				System.out.println("프로그램을 종료합니다.");
 				run = false;
 			}
@@ -74,30 +72,41 @@ public class BowlingApp {
 
 	} // end of main()
 
-	// 관리자의 ID, PW확인 메소드
-	public static void login() {
+	// 로그인 메소드
+	public static Integer login() {
 		while (true) {
-			System.out.println("관리자(회장) 전용 프로그램입니다.");
+			System.out.println("로그인하려면 '엔터키'를 누르세요");
+			System.out.println("(종료 시 '7' 입력)");
+			
+			if(sc.nextLine().equals("7")) {
+				return 7;
+			}
 			System.out.println("id를 입력해주세요>>> ");
 			String id = sc.nextLine();
 
 			System.out.println("pw를 입력해주세요>>> ");
 			int pw = Integer.parseInt(sc.nextLine());
 
-			ArrayList<User> loginAry = udao.logIn(id, pw);
-			for(int i = 0; i < loginAry.size(); i++) {
-				if (loginAry.get(i) != null) {
-					System.out.println(udao.getUserName(id) + "님, 제로클럽 [관리자] 페이지에 오신 것을 환영합니다 :)");
-					break;
-				} else {
-					System.out.println("id 및 pw 확인해주세요");
+			if(udao.logIn(id, pw) != null) {
+				if(udao.logIn(id, pw).getRights().equals("president")) {
+					System.out.println(udao.logIn(id, pw).getUserName() + "님, 제로클럽 [관리자] 페이지에 오신 것을 환영합니다 :)");
+					return 1;
+				}else if(udao.logIn(id, pw).getRights().equals("member")) {
+					if(udao.logIn(id, pw).getApproval().equals("승인")) {
+						System.out.println(udao.logIn(id, pw).getUserName() + "님, 제로클럽 [일반회원] 페이지에 오신 것을 환영합니다 :)");
+						return 2;						
+					}else {
+						System.out.println("관리자(회장) 승인이 필요합니다!🚨");
+					}
 				}
+			}
+			else {
+				System.out.println("id 및 pw 확인해주세요");
 				
 			}
-			
-			
 		}
 	} // end of login()
+	
 
 	// 관리자의 회원관리 메소드
 	public static void memManageMenu() throws ParseException {
@@ -167,12 +176,12 @@ public class BowlingApp {
 				} else if (modify.equals("b")) {
 					System.out.println("회원번호 입력 >>");
 					String num = sc.nextLine();
-					System.out.println("수정할 등급 입력 >>");
+					System.out.println("가입승인여부 입력 >>");
 					String approve = sc.nextLine();
 					if (mdao.modifyApprove(num, approve)) {
-						System.out.println("등급수정 완료!");
+						System.out.println("가입승인수정 완료!");
 					} else {
-						System.out.println("등급수정 실패...");
+						System.out.println("가입승인수정 실패...");
 					}
 				}
 				break;
@@ -260,10 +269,8 @@ public class BowlingApp {
 				System.out.println("볼링점수 등록");
 				System.out.println("경기번호 입력 >>");
 				String gameNo = sc.nextLine();
-				// 내점수만 입력하기 때문에 회원번호는 따로 입력받지 않아도 괜찮을듯..?
-				/*
-				 * System.out.println("회원번호 입력 >>"); String memNo = sc.nextLine();
-				 */
+				System.out.println("회원번호 입력 >>"); 
+				String memNo = sc.nextLine();
 				System.out.println("1번째 게임 볼링점수 입력 >>");
 				int bowling1G = Integer.parseInt(sc.nextLine());
 				System.out.println("2번째 게임 볼링점수 입력 >>");
@@ -275,7 +282,7 @@ public class BowlingApp {
 
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-				Score sco = new Score(gameNo, bowling1G, bowling2G, bowling3G, sdf.parse(bowlingDate));
+				Score sco = new Score(gameNo, memNo, bowling1G, bowling2G, bowling3G, sdf.parse(bowlingDate));
 
 				if (sdao.addScore(sco)) {
 					System.out.println("점수 등록완료!");
@@ -287,7 +294,9 @@ public class BowlingApp {
 			case 2:
 				System.out.println("조회할 달(월)을 입력 >>");
 				String month = sc.nextLine();
-				ArrayList<Score> scoreAry = sdao.getScoreList(month);
+				System.out.println("내 회원번호 입력 >>"); 
+				memNo = sc.nextLine();
+				ArrayList<Score> scoreAry = sdao.getScoreList(month, memNo);
 				for (Score score : scoreAry) {
 					score.showScoreInfo();
 				}
@@ -334,7 +343,7 @@ public class BowlingApp {
 		while (run) {
 			System.out.println("공지글 번호 입력 >>");
 			int boardNum = Integer.parseInt(sc.nextLine());
-			System.out.println("[     공지" + boardNum + "번 글     ]");
+			System.out.println("[-----공지 " + boardNum + "번 글-----]");
 			ArrayList<Board> bodAry = cdao.getBoardList(boardNum);
 			for (Board bord : bodAry) {
 				bord.showBoardInfo();

@@ -42,15 +42,14 @@ public class UserDAO {
 		}
 	}
 	
-	// 로그인 메소드
-	ArrayList<User> logIn(String id, int pw) {
+	// 관리자 로그인 메소드
+	User logIn(String id, int pw) {
 		getConn();
-		String sql = "select  user_id, user_pw "
-					+ "from    users "
-					+ "where   user_id =? "
-					+ "and     user_pw =?";
-		
-		ArrayList<User> logins = new ArrayList<User>();
+		String sql = "select   m.*, u.* "
+					+ "from    users u, members m "
+					+ "where   u.user_no = m.member_no "
+					+ "and     u.user_id =? "
+					+ "and     u.user_pw =? ";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -63,43 +62,16 @@ public class UserDAO {
 				User use = new User();
 				use.setUserId(rs.getString("user_id"));
 				use.setUserPw(rs.getInt("user_pw"));
-				logins.add(use);
+				use.setUserName(rs.getString("member_name"));
+				use.setRights(rs.getString("rights"));
+				use.setApproval(rs.getString("approval"));
+				return use;
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
-		return logins;
-	}
-	
-	// 로그인 사용자 이름 반환 메소드
-	ArrayList<User> getUserName(String id) {
-		getConn();
-		String sql = "select	m.member_name "
-					+ "from		users u, members m "
-					+ "where	u.user_no = m.member_no "
-					+ "and      u.user_id = 'jang'";
-		
-		ArrayList<User> users = new ArrayList<User>();
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-			
-			rs = psmt.executeQuery();
-			
-			while(rs.next()) {
-				User use = new User();
-				use.setUserName(rs.getString("m.member_name"));
-				
-				users.add(use);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			disConn();
-		}
-		return users;
+		return null;
 	}
 	
 } // end of class

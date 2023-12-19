@@ -20,7 +20,7 @@ public class MemberDAO {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection(url, "dev", "dev");
-			System.out.println("연결성공~~!");
+			// System.out.println("연결성공~~!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

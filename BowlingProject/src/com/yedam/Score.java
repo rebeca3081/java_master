@@ -6,7 +6,7 @@ import java.util.Date;
 public class Score {
 	// 필드
 	private String gameNo;
-	// private String scoreNo;
+	private String scoreMemNo;
 	private int score1G;
 	private int score2G;
 	private int score3G;
@@ -19,8 +19,9 @@ public class Score {
 		
 	}
 	
-	public Score(String gameNo, int score1G, int score2G, int score3G, Date bowlingDate) {
+	public Score(String gameNo, String scoreMemNo, int score1G, int score2G, int score3G, Date bowlingDate) {
 		this.gameNo = gameNo;
+		this.scoreMemNo = scoreMemNo;
 		this.score1G = score1G;
 		this.score2G = score2G;
 		this.score3G = score3G;
@@ -40,6 +41,14 @@ public class Score {
 
 	public void setGameNo(String gameNo) {
 		this.gameNo = gameNo;
+	}
+
+	public String getScoreMemNo() {
+		return scoreMemNo;
+	}
+
+	public void setScoreMemNo(String scoreMemNo) {
+		this.scoreMemNo = scoreMemNo;
 	}
 
 	public int getScore1G() {

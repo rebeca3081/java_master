@@ -6,19 +6,20 @@ public class User {
 	private String userId;
 	private int userPw;
 	private String userName;
-	
+	private String rights;
+	private String approval;
+
 	// 생성자
 	public User() {
-		
+
 	}
-	public User(String uerId, int userPw, String userName) {
+
+	public User(String uerId, int userPw, String userName, String rights, String approval) {
 		this.userId = uerId;
 		this.userPw = userPw;
 		this.userName = userName;
-	}
-	public User(String uerId, int userPw) {
-		this.userId = uerId;
-		this.userPw = userPw;
+		this.rights = rights;
+		this.approval = approval;
 	}
 
 	// getter,setter
@@ -45,6 +46,21 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-			
-		
-}
+
+	public String getRights() {
+		return rights;
+	}
+
+	public void setRights(String rights) {
+		this.rights = rights;
+	}
+
+	public String getApproval() {
+		return approval;
+	}
+
+	public void setApproval(String approval) {
+		this.approval = approval;
+	}
+
+} // end of class

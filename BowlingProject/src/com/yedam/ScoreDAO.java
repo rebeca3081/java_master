@@ -19,7 +19,7 @@ public class ScoreDAO {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection(url, "dev", "dev");
-			System.out.println("연결성공~~!");
+			// System.out.println("연결성공~~!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -45,7 +45,7 @@ public class ScoreDAO {
 	
 	
 	// 목록 반환기능
-	ArrayList<Score> getScoreList(String month){
+	ArrayList<Score> getScoreList(String month, String memNo){
 		getConn();
 		System.out.println("================================================================================================");
 		System.out.println("목록 번호 \t 1G 볼링점수 \t 2G 볼링점수  \t  3G 볼링점수  \t 에버리지 \t 볼링친 날짜");
@@ -55,11 +55,13 @@ public class ScoreDAO {
 					+ "        round((score_1g + score_2g + score_3g)/3) as AVG, "
 					+ "        bowling_date "
 					+ "from    scores "
-					+ "where   extract(month from bowling_date) =?";
+					+ "where   extract(month from bowling_date) =? "
+					+ "and     score_no =? ";
 		ArrayList<Score> scores = new ArrayList<Score>();
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, month);
+			psmt.setString(2, memNo);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				Score sco = new Score();
@@ -85,16 +87,17 @@ public class ScoreDAO {
 	// 추가
 	boolean addScore(Score sco) {
 		getConn();
-		String sql = "insert into scores (game_no, score_1g, score_2g, score_3g, bowling_date) "
-					+ "values (?, ?, ?, ?, ?)";
+		String sql = "insert into scores "
+					+ "values (?, ?, ?, ?, ?, ?)";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, sco.getGameNo());
-			psmt.setInt(2, sco.getScore1G());
-			psmt.setInt(3, sco.getScore2G());
-			psmt.setInt(4, sco.getScore3G());
-			psmt.setString(5, sdf.format(sco.getBowlingDate()));
+			psmt.setString(2, sco.getScoreMemNo());
+			psmt.setInt(3, sco.getScore1G());
+			psmt.setInt(4, sco.getScore2G());
+			psmt.setInt(5, sco.getScore3G());
+			psmt.setString(6, sdf.format(sco.getBowlingDate()));
 			
 			int r = psmt.executeUpdate();
 			if(r == 1) {
