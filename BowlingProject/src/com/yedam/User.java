@@ -4,24 +4,47 @@ package com.yedam;
 public class User {
 	// 필드
 	private String userId;
-	private String passwd;
+	private int userPw;
 	private String userName;
 	
 	// 생성자
-		public User(String uerId, String passwd, String userName) {
-			this.userId = uerId;
-			this.passwd = passwd;
-			this.userName = userName;
-		}
+	public User() {
 		
-		// getter
-		public String getUserId() {
-			return userId;
-		}
-		public String getPasswd() {
-			return passwd;
-		}
-		public String getUserName() {
-			return userName;
-		}
+	}
+	public User(String uerId, int userPw, String userName) {
+		this.userId = uerId;
+		this.userPw = userPw;
+		this.userName = userName;
+	}
+	public User(String uerId, int userPw) {
+		this.userId = uerId;
+		this.userPw = userPw;
+	}
+
+	// getter,setter
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public int getUserPw() {
+		return userPw;
+	}
+
+	public void setUserPw(int userPw) {
+		this.userPw = userPw;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+			
+		
 }
