@@ -130,7 +130,7 @@ public class BowlingApp {
 				System.out.println("가입승인여부 입력 >>");
 				String approval = sc.nextLine();
 
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
 				Member mem = new Member(no, name, phone, sdf.parse(join), grade, approval);
 
 				if (mdao.addMember(mem)) {
@@ -280,7 +280,7 @@ public class BowlingApp {
 				System.out.println("볼링친 날짜 입력 >>");
 				String bowlingDate = sc.nextLine();
 
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
 
 				Score sco = new Score(gameNo, memNo, bowling1G, bowling2G, bowling3G, sdf.parse(bowlingDate));
 

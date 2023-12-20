@@ -28,7 +28,6 @@ public class EmpApp {
 					if(inpAry.length == 4) {
 						String today = inpAry[4];
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-						emplo = new Emp()
 						
 					}
 					
@@ -38,7 +37,7 @@ public class EmpApp {
 					int salary = Integer.parseInt(inpAry[3]);
 					String today = inpAry[4];
 					
-					Emp emplo = new Emp(num, name, phone, salary);
+					//Emp emplo = new Emp(num, name, phone, salary);
 					
 					if(exe.addEmp(emplo))
 					

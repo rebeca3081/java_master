@@ -16,7 +16,7 @@ public class MemberDAO {
 	
 	// JDBC 기능
 	Connection getConn() {
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.0.18:1521:xe";
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection(url, "dev", "dev");
@@ -48,7 +48,7 @@ public class MemberDAO {
 	ArrayList<Member> getMemberList(){
 		getConn();
 		System.out.println("==================================================================");
-		System.out.println("회원번호 \t 회원명 \t 전화번호  \t  가입날짜  \t 등급  \t  가입승인여부");
+		System.out.println("회원번호 \t회원명 \t 전화번호 \t 가입날짜 \t 등급 \t 가입승인여부");
 		System.out.println("==================================================================");
 		
 		ArrayList<Member> members = new ArrayList<>();
@@ -71,7 +71,6 @@ public class MemberDAO {
 		} finally {
 			disConn();
 		}
-		
 		return members;
 	} // end of getMemberList()
 	
@@ -81,7 +80,7 @@ public class MemberDAO {
 		getConn();
 		String sql = "insert into members "
 						+ "values (?, ?, ?, ?, ?, ?)";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, mem.getNo());
@@ -127,9 +126,7 @@ public class MemberDAO {
 		
 		return false;
 	} //end of modifyAllGrade()
-	
-	// 시간이 된다면...추가해볼것 -> 등급변경할 회원 목록 조회 후 변경할 수 있도록 해보기
-	
+		
 	
 	// 회원정보수정_1 : 회원번호으로 조회 -> 회원전화번호 수정
 	boolean modifyPhone(String num, String phonenum) {

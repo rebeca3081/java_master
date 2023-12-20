@@ -22,11 +22,12 @@ public class NullExceptionExe {
 		} catch (NullPointerException | NumberFormatException e) { // (어떤예외)
 			 System.out.println("Null예외발생. 010-1111-2222 전화해서 해결바람^^");
 			// e.printStackTrace(); // NullPointerException클래스 변수e의 로그를 찍어보는 메소드()
-		/* } catch (NumberFormatException ne) {
+		} /* catch (NumberFormatException ne) {
 			System.out.println("숫자값을 입력하세요");
-		} */ catch(Exception ee) {
+		} */catch(Exception ee) {
 			System.out.println("알수 없는 예외가 발생");
-		}
+			}
+		
 
 		System.out.println("end of prog");
 

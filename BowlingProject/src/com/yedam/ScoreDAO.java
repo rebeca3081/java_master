@@ -15,7 +15,7 @@ public class ScoreDAO {
 	
 	// JDBC 기능
 	Connection getConn() {
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.0.18:1521:xe";
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection(url, "dev", "dev");
@@ -48,7 +48,7 @@ public class ScoreDAO {
 	ArrayList<Score> getScoreList(String month, String memNo){
 		getConn();
 		System.out.println("================================================================================================");
-		System.out.println("목록 번호 \t 1G 볼링점수 \t 2G 볼링점수  \t  3G 볼링점수  \t 에버리지 \t 볼링친 날짜");
+		System.out.println("경기 번호 \t 1G 볼링점수 \t 2G 볼링점수  \t 3G 볼링점수  \t 에버리지 \t 볼링친 날짜");
 		System.out.println("================================================================================================");
 		String sql = "select   game_no, "
 					+ "        score_1g, score_2g, score_3g, "
@@ -89,7 +89,7 @@ public class ScoreDAO {
 		getConn();
 		String sql = "insert into scores "
 					+ "values (?, ?, ?, ?, ?, ?)";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, sco.getGameNo());

@@ -30,7 +30,7 @@ public class Score {
 
 	// 메소드
 	public void showScoreInfo() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
 		System.out.printf("%s \t %d \t\t %d \t\t %d \t\t %d \t\t %s \n", gameNo, score1G, score2G, score3G, avg, sdf.format(bowlingDate));
 	}
 

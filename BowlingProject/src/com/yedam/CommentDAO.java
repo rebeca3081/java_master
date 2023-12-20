@@ -15,7 +15,7 @@ public class CommentDAO {
 	
 	// JDBC 연결 메소드
 	Connection getConn() {
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.0.18:1521:xe";
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection(url, "dev", "dev");
@@ -47,7 +47,7 @@ public class CommentDAO {
 	ArrayList<Board> getBoardList(int boardNum) {
 		getConn();
 		System.out.println("---------------------------------------------------------");
-		System.out.println("글번호 \t 공지글 내용 \t\t 작성자 \t 작성일자");
+		System.out.println("글번호 \t 공지글 내용 \t\t\t 작성자  \t  작성일자");
 		System.out.println("---------------------------------------------------------");
 		ArrayList<Board> boards = new ArrayList<Board>();
 		
@@ -82,9 +82,9 @@ public class CommentDAO {
 	// 댓글 목록 반환 메소드
 	ArrayList<Comment> getCommentList(int boardNum){
 		getConn();
-		System.out.println("=================================================================");
-		System.out.println("댓글 번호 \t 댓글 내용 \t\t 댓글 작성자 \t 작성일자");
-		System.out.println("=================================================================");
+		System.out.println("==========================================================");
+		System.out.println("댓글 번호   댓글 내용 \t\t\t작성자\t작성일자");
+		System.out.println("==========================================================");
 		
 		ArrayList<Comment> comments = new ArrayList<Comment>();
 		
@@ -187,15 +187,16 @@ public class CommentDAO {
 	// 내 댓글 조회
 	ArrayList<Comment> getMyComment(String myName){
 		getConn();
-		System.out.println("===================================================================");
-		System.out.println("댓글 번호 \t 댓글 내용 \t\t 댓글 작성자 \t 작성일자");
-		System.out.println("===================================================================");
+		System.out.println("==========================================================");
+		System.out.println("댓글 번호   댓글 내용 \t\t\t작성자\t작성일자");
+		System.out.println("==========================================================");
 		
 		ArrayList<Comment> comments = new ArrayList<Comment>();
 		
-		String sql = "select * "
-					+ "from comments "
-					+ "where comment_writer =?";
+		String sql = "select  * "
+					+ "from    comments "
+					+ "where   comment_writer =? "
+					+ "order by 2";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, myName);

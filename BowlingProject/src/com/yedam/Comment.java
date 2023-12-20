@@ -21,7 +21,7 @@ public class Comment {
 	
 	// 메소드
 	public void showComentInfo() {
-		System.out.printf("%4d   \t   %s   \t   %s   \t  %s \n", commentNo, commntCon, commentWriter, commentDate);
+		System.out.printf("%4d   \t  %s   \t%s \t%s \n", commentNo, commntCon, commentWriter, commentDate);
 	}
 
 	// getter,setter
