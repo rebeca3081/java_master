@@ -1,4 +1,4 @@
-package common;
+package com.yedam.student.command;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.yedam.student.service.StudentService;
+import com.yedam.student.serviceImpl.StudentServiceMybatis;
+import com.yedam.student.vo.Student;
 
 @WebServlet("/MyInfoServlet")
 public class MyInfoServlet extends HttpServlet { // HttpServlet을 상속을 받아야 기능을 오버라이딩해서 사용이 가능함
@@ -37,8 +41,8 @@ public class MyInfoServlet extends HttpServlet { // HttpServlet을 상속을 받
 		System.out.println("son : " + sno + ", sname : " + sname + ", escore: " + escore + ", mscore: " + mscore);
 
 		// db 저장.
-		Student std = new Student(sno, sname, Integer.parseInt(mscore), Integer.parseInt(escore));
-		StudentDAO dao = new StudentDAO();
+		Student std = new Student(sno, sname, Integer.parseInt(escore), Integer.parseInt(mscore));
+		StudentService dao = new StudentServiceMybatis();
 		boolean done = dao.addStudent(std);
 
 		PrintWriter out = response.getWriter(); // getWriter() : 출력스트림
@@ -48,7 +52,7 @@ public class MyInfoServlet extends HttpServlet { // HttpServlet을 상속을 받
 		out.println("<a href='index.html'>인덱스 이동</a>");
 
 		if (done) {
-			out.print("<script>alert('OK'); location.href='student/studentList.jsp';</script>");
+			out.print("<script>alert('OK'); location.href='studentList';</script>");
 		} else {
 			out.print("<script>alert('Fail'); location.href='index.html';</script>");
 		}

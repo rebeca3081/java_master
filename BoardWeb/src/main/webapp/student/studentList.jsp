@@ -16,7 +16,7 @@
 			<tr><th>학번</th><th>이름</th><th>영어</th><th>수학</th></tr>
 		</thead>
 		<tbody>
-		<!-- Java code 영역 짱신기해 와우 -->
+		<!-- Java code 영역 -->
 		<%
 			StudentDAO dao = new StudentDAO();
 			List<Student> list = dao.getStudentList();
