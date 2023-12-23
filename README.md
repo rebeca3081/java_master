@@ -1,5 +1,3 @@
 # Java
-# Servlet
-# JSP
-# Maven
-# Mybatis
+# Servlet / JSP
+# Maven / Mybatis
