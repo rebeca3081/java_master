@@ -1,6 +1,6 @@
 package com.yedam.common;
 
-import java.util.List;
+//import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -41,7 +41,7 @@ public class MainExe {
 		
 		// 단건조회 해보기!!
 		
-		BoardVO one = mapper.selectOne(4);
+		BoardVO one = mapper.selectOne(1);
 			System.out.println(one.toString());
 		
 		
