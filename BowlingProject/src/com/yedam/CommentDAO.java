@@ -15,7 +15,8 @@ public class CommentDAO {
 	
 	// JDBC 연결 메소드
 	Connection getConn() {
-		String url = "jdbc:oracle:thin:@192.168.0.18:1521:xe";
+		//String url = "jdbc:oracle:thin:@192.168.0.18:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			conn = DriverManager.getConnection(url, "dev", "dev");
