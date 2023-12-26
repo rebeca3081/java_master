@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface Control {
 
-	// execute()
+	// execute() 정의
 	public void execute(HttpServletRequest req, HttpServletResponse resp);
 }
