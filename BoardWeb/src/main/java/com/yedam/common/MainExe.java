@@ -1,16 +1,25 @@
 package com.yedam.common;
 
-//import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
-import com.yedam.board.mapper.BoardMapper;
-import com.yedam.board.vo.BoardVO;
+import com.yedam.board.service.MemberService;
+import com.yedam.board.serviceImpl.MemberServiceImpl;
+import com.yedam.member.vo.MemberVO;
 
 // 테스트용
 public class MainExe {
 	public static void main(String[] args) {
+		// Member 로그인 테스트
+		MemberService svc = new MemberServiceImpl();
+		MemberVO vo = svc.login("user1", "1111");
+		
+		if(vo != null) {
+			System.out.println(vo);
+			System.out.println(vo.getName() + "님, 환영합니다. 권한은 " +vo.getResponsibility());
+		}else {
+			System.out.println("id, pw 확인");
+		}
+		
+		
+		
 		/* StudentService svc = new StudentServiceMybatis();
 		String sno = "23-001";
 
@@ -25,11 +34,14 @@ public class MainExe {
 		// Board 테스트
 		
 		// JDBC vs Mybatis
+		/*
 		SqlSessionFactory factory = DataSource.getInstance();
 		SqlSession session = factory.openSession(true);
 		// SqlSession session = DataSource.getInstance().openSession();
 		
 		BoardMapper mapper = session.getMapper(BoardMapper.class);
+		*/
+		
 		
 		// 목록조회
 		/*
@@ -40,11 +52,11 @@ public class MainExe {
 		*/
 		
 		// 단건조회 해보기!!
-		
+		/*
 		BoardVO one = mapper.selectOne(1);
 			System.out.println(one.toString());
-		
-		
+		*/
+	
 		// 입력
 		/*
 		BoardVO vo = new BoardVO();
