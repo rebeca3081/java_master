@@ -1,4 +1,4 @@
-package com.yedam.board.service;
+package com.yedam.member.service;
 
 import com.yedam.member.vo.MemberVO;
 

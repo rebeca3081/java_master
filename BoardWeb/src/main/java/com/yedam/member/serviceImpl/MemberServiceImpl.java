@@ -1,10 +1,10 @@
-package com.yedam.board.serviceImpl;
+package com.yedam.member.serviceImpl;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.yedam.board.service.MemberService;
 import com.yedam.common.DataSource;
 import com.yedam.member.mapper.MemberMapper;
+import com.yedam.member.service.MemberService;
 import com.yedam.member.vo.MemberVO;
 
 public class MemberServiceImpl implements MemberService{
