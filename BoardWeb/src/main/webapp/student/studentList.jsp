@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>studentList.html</title>
+<title>studentList.jsp</title>
 </head>
 <body>
 
@@ -24,7 +24,7 @@
 			for (Student std : list) {
 		%>
 		<tr>
-			<td><a href='studentInfo.jsp?sno=<%=std.getStudentNo ()%>'><%=std.getStudentNo() %></a></td>
+			<td><a href='studentInfo.do?sno=<%=std.getStudentNo ()%>'><%=std.getStudentNo() %></a></td>
 			<td><%=std.getStudentName() %></td>
 			<td><%=std.getScoreEng() %></td>
 			<td><%=std.getScoreMath() %></td>

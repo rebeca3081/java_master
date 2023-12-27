@@ -55,8 +55,8 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new LogoutControl()); // 로그아웃 처리
 		
 		// tiles 관련
-		map.put("/studentList.do", new StudentListControl());
-		map.put("/studentInfo.do", new StudentInfoControl());
+		map.put("/studentList.do", new StudentListControl()); // 학생 목록
+		map.put("/studentInfo.do", new StudentInfoControl()); // 학생 단건조회 ?sno=23-001
 		
 		
 		
