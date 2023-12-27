@@ -1,4 +1,4 @@
-package com.yedam.member.command;
+package com.yedam.student.command;
 
 import java.io.IOException;
 
@@ -8,14 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class LoginFormControl implements Control {
+public class StudentInfoControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		// 화면호출.
 		try {
-			// WILDCARD:*/* {1}폴더명 {2}파일명
-			req.getRequestDispatcher("member/logForm.tiles").forward(req, resp);
+			req.getRequestDispatcher("student/studentInfo.tiles").forward(req, resp);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}

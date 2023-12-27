@@ -1,15 +1,13 @@
-<%@page import="java.util.List"%>
-<%@page import="com.yedam.board.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../layout/menu.jsp"%>
-<%@ include file="../layout/nav.jsp"%>
-<%
-List<BoardVO> list = (List<BoardVO>) request.getAttribute("boardList");
-// 주소값 받아오기 : getAttribute() -> Object type이라 컬렉션으로 형변환해줘야함
-%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 
 <h3>게시판</h3>
+<!-- EL(Expression Language) -->
+<!-- attribute값을 읽어옴(.getAttribute()의 역할) -->
+
 <table class="table">
 	<thead>
 		<tr>
@@ -21,23 +19,14 @@ List<BoardVO> list = (List<BoardVO>) request.getAttribute("boardList");
 		</tr>
 	</thead>
 	<tbody>
-		<%
-		for (BoardVO vo : list) {
-		%>
+		<c:forEach var="vo" items="${boardList }">
 		<tr>
-			<td><%=vo.getBoardNo()%></td>
-			<td><a href="getBoard.do?bno=<%=vo.getBoardNo()%>"><%=vo.getTitle()%></a></td>
-			<td><%=vo.getWriter()%></td>
-			<td><%=vo.getWriteDate()%></td>
-			<td><%=vo.getClickCnt()%></td>
+			<td>${vo.boardNo }</td>
+			<td><a href="getBoard.do?bno=${vo.boardNo }">${vo.title }</a></td>
+			<td>${vo.writer }</td>
+			<td><fmt:formatDate value="${vo.writeDate }" pattern="yyyy-MM-dd" /></td>
+			<td>${vo.clickCnt }</td>
 		</tr>
-		<%
-		}
-		%>
+		</c:forEach>
 	</tbody>
 </table>
-
-<br>
-<a href='boardForm.do'>등록화면</a>
-
-<%@ include file="../layout/foot.jsp"%>

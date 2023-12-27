@@ -1,18 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../layout/menu.jsp"%>
-<%@ include file="../layout/nav.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%
-	String msg = (String) request.getAttribute("message");
-%>
 
-<%	if(msg != null){ %>
-<p><%=msg %></p>
-<%	} %>
+<c:if test="${message != null }">
+	<p>${message }</p>
+</c:if>
 
 <h3>로그인 화면</h3>
-<form action="login.do">
+<form action="login.do" method="post">
 	<table class="table">
 		<tbody>
 			<tr>
@@ -36,4 +32,3 @@
 		</tbody>
 	</table>
 </form>
-<%@ include file="../layout/foot.jsp"%>

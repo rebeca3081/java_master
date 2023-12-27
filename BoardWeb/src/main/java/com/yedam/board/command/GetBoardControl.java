@@ -25,8 +25,8 @@ public class GetBoardControl implements Control {
 		req.setAttribute("vo", vo);
 
 		// 페이지를 이동(forward)
-		// 사용자가 URL을 입력시 "board/getBoard.jsp"페이지 재이동
-		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/board/getBoard.jsp");
+		// 사용자가 URL을 입력시 "board/getBoard.tiles"페이지 재이동
+		RequestDispatcher rd = req.getRequestDispatcher("board/getBoard.tiles");
 		try {
 			rd.forward(req, resp); // 요청을 재 지정하겠습니다.
 		} catch (ServletException | IOException e) {
