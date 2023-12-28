@@ -18,8 +18,10 @@ import com.yedam.board.command.ModifyBoardControl;
 import com.yedam.board.command.ModifyFormControl;
 import com.yedam.board.command.RemoveBoardControl;
 import com.yedam.board.command.RemoveFormControl;
+import com.yedam.member.command.GetMemberControl;
 import com.yedam.member.command.LoginControl;
 import com.yedam.member.command.LoginFormControl;
+import com.yedam.member.command.MemberListControl;
 import com.yedam.student.command.StudentInfoControl;
 import com.yedam.student.command.StudentListControl;
 
@@ -54,6 +56,10 @@ public class FrontController extends HttpServlet {
 		map.put("/login.do", new LoginControl()); // 로그인 처리
 		map.put("/logout.do", new LogoutControl()); // 로그아웃 처리
 		
+		// 관리자
+		map.put("/memberList.do", new MemberListControl()); // 회원 목록
+		map.put("/getMember.do", new GetMemberControl()); // 회원 상세
+		
 		// tiles 관련
 		map.put("/studentList.do", new StudentListControl()); // 학생 목록
 		map.put("/studentInfo.do", new StudentInfoControl()); // 학생 단건조회 ?sno=23-001
@@ -69,7 +75,7 @@ public class FrontController extends HttpServlet {
 		req.setCharacterEncoding("utf-8"); // 요청정보에 한글 인코딩
 		
 		System.out.println("service() 호출");
-		String url = req.getRequestURI(); // url에서 서버정보 빼고, /프로젝트명/main.do
+		String url = req.getRequestURI(); // URL에서 서버정보 빼고, /프로젝트명/main.do
 		String context = req.getContextPath(); // /프로젝트명
 		String page = url.substring(context.length()); // /main.do, context.length()+1 ->main.do
 		System.out.println(page);
