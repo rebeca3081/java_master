@@ -11,4 +11,8 @@
   <select id="getProduct" resultType="product" parameterType="string">
   	select * from product where product_code =#{pno}
   </select>
+  
+  <select id="selectTopList" resultType="product">
+    select * from (select * from product order by like_it desc) where rownum <![CDATA[<=]]> 4
+  </select>
 </mapper>

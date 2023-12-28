@@ -7,4 +7,5 @@ import com.yedam.product.vo.ProductVO;
 public interface ProductMapper {
 	List<ProductVO> selectList();
 	ProductVO getProduct(String pno);
+	List<ProductVO> selectTopList();
 }

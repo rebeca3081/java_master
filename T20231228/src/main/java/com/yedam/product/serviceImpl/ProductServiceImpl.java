@@ -23,4 +23,9 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.getProduct(pno);
 	}
 
+	@Override
+	public List<ProductVO> productLikeList() {
+		return mapper.selectTopList();
+	}
+
 }
