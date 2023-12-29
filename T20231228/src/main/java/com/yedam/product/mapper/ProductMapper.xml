@@ -13,6 +13,6 @@
   </select>
   
   <select id="selectTopList" resultType="product">
-    select * from (select * from product order by like_it desc) where rownum <![CDATA[<=]]> 4
+    <![CDATA[ select * from (select * from product order by like_it desc) where rownum <= 4 ]]>
   </select>
 </mapper>

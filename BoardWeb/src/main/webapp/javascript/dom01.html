@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dom01.html</title>
+</head>
+<body>
+  <!-- 표 -->
+
+  
+
+  <script>
+    console.log(window);
+    // window.alert('안녕!');
+    let btn = document.createElement('button'); // DOM : Document Object Modle
+    btn.innerText = '버튼';
+    //addEventListener(이벤트 유형, 함수)
+    btn.addEventListener('click', function(){
+      window.alert('버튼이 눌렸네용');
+    })
+    console.log(btn);
+
+    
+
+    let bdy = document.querySelector('body');
+
+    document.querySelector('body').appendChild(btn);
+    // ul, li 생성
+    let ul = document.createElement('ul');
+    // 중복코드 줄이기
+    const fruits = ['apple', 'banana', 'cherry']; //new Array()도 있음
+    // 배열 for...of
+    for(let fruit of fruits){
+      let li = document.createElement('li');
+      li.innerText = fruit;
+      ul.appendChild(li);
+    }
+
+    bdy.appendChild(ul);
+
+    // table 생성
+
+    // 중복코드 줄이기
+    const titles = ['아이디', '이름', '전화번호']; 
+    const users = ['user1', '홍길동', '010-2222'];
+
+    let table = document.createElement('table');
+    bdy.appendChild(table);
+
+    let thead = document.createElement('thead');
+    table.appendChild(thead);
+
+    let tbody = document.createElement('tbody');
+    table.appendChild(tbody);
+
+    let tr1 = document.createElement('tr');
+    thead.appendChild(tr1);
+
+    let tr2 = document.createElement('tr');
+    tbody.appendChild(tr2);
+    
+    for(let title of titles){
+      let th = document.createElement('th');
+      th.innerText = title;
+      tr1.appendChild(th);
+    }
+
+    for(let user of users){
+      let td = document.createElement('td');
+      td.innerText = user;
+      tr2.appendChild(td);
+    }
+
+    table.setAttribute('border', '1')
+  </script>
+</body>
+</html>
