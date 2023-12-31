@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>todo/20231229.html</title>
   <style>
     #show {
-      width: 300px;
-      height: 250px;
+      width: 350px;
+      height: 400px;
       background: blueviolet;
     }
+
     span {
       display: inline-block;
-      width: 80px;
+      width: 100px;
       height: 30px;
+      margin: 0 10px 10px 0;
       background-color: lemonchiffon;
     }
   </style>
 </head>
+
 <body>
   <div id="show">
-    <span>Lorem</span>
-    <span>ipsum</span>
     <!-- 추가되게하기 -->
   </div>
   <script>
@@ -31,8 +33,13 @@
     // console.log(wordAry);
 
     let div = document.querySelector('#show');
-    let span = document.createElement('span');
-    div.appendChild(span);
+    for (let words of wordAry) {
+      let span = document.createElement('span');
+      span.innerText = words;
+      div.appendChild(span);
+    }
+
   </script>
 </body>
+
 </html>
