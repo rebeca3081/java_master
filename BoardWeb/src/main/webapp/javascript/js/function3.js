@@ -8,8 +8,8 @@ let obj1 = {
   }
 }
 
-console.log(obj1.name);
-console.log(obj1['age']);
+console.log(obj1.name); // 객체 속성 접근방법 (1)
+console.log(obj1['age']); // 객체 속성 접근방법 (2)
 console.log(obj1.showInfo());
 
 // 함수를 통해 객체 선언.

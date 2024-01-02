@@ -1,12 +1,12 @@
 // 함수
 
 // 함수 선언식
-function sum(num1 = 0, num2 = 0) { // (parameter) : 매개변수
+function sum(/* num1 = 0, num2 = 0 */) { // (parameter) : 매개변수
   let result = 0;
-  result = num1 + num2;
+  // result = num1 + num2;
   // console.log(result);
-  console.log(arguments); // arguments : 들어오는 매개값들을 처리해주는 객체
-  if (arguments.length > 2) {
+  // console.log(arguments); // arguments : 들어오는 매개값들을 처리해주는 객체
+  if (arguments.length > 2) { // 50 + 20 + 40 + 60 = 170
     for (let arg = 2; arg < arguments.length; arg++) {
       result += arguments[arg];
     }
@@ -37,7 +37,7 @@ let obj2 = {
   name : "Hwang",
   point : 80
 }
-// 함수 매개값으로 객체 사용가능
+// 1. 함수 매개값으로 '객체' 사용가능
 let average = function (obj1 = {}, obj2 = {}){
   let result = 0;
   result = (obj1.point + obj2.point) / 2;
@@ -48,7 +48,7 @@ console.log('평균값: ' + average(obj1, obj2));
 // 배열
 let array1 = [10, 20];
 let array2 = [30, 40];
-// 함수 매개값으로 배열 사용가능
+// 2. 함수 매개값으로 '배열' 사용가능
 let sum3 = function (ary1 = [], ary2 = []){
   let result = 0;
   // console.log(ary1.concat(ary2));
@@ -59,7 +59,7 @@ let sum3 = function (ary1 = [], ary2 = []){
 }
 console.log("배열의 총합 : " + sum3(array1, array2));
 
-// 함수 매개값으로 함수를 사용
+// 3. 함수 매개값으로 '함수'를 사용
 let myFunc = function(callback){
   let result = 0;
   let num1 =  10,

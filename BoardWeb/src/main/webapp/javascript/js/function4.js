@@ -32,10 +32,11 @@ const cal = {
       let td = document.createElement('td');
       td.innerText = i;
 
+      // console.log((firstDay + i) % 7);
       // td 속성추가(토요일 : aqua, 일요일 : pink)
       if ((firstDay + i) % 7 == 0) { // 토요일
         td.setAttribute('style', "background-color:aqua; font-weight:bold;");
-      } else if ((firstDay + i - 1) % 7 == 0) { // 일요일 firstDay + i) % 7 == 1
+      } else if ((firstDay + i - 1) % 7 == 0) { // 일요일 (firstDay + i) % 7 == 1
         td.setAttribute('style', "background-color:pink; font-weight:bold;");
       }
 

@@ -46,10 +46,11 @@ function makeTitle(dayAry = [], pos = {}) {
     tr.appendChild(th);
   })
   pos.appendChild(tr);
+  // console.log(pos); // <thead>...</thead> (#theader)
 }
 
 // 날짜생성 : tbody 부분 생성 함수
-function makeBody(month = 1, pos = {}) {
+function makeBody(month = 0, pos = {}) {
   let tr = document.createElement('tr');
   // 공백
   let firstDay = getFirstDay(month);
@@ -80,4 +81,5 @@ function makeBody(month = 1, pos = {}) {
     } 
   }
   pos.appendChild(tr);
+  // console.log(pos); // <tbody>...</tbody> (#tbody)
 }
