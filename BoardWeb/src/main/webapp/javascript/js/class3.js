@@ -13,7 +13,7 @@ class Estimate {
   }
   // 배열에 요소 추가 메소드
   addUnit(unit) {
-    unit.push(unit);
+    this.unit.push(unit);
   }
 }
 let unitinfo = [{ type: "wood", price: 100 }, { type: "iron", price: 300 }, { type: "plastic", price: 200 }];
@@ -26,7 +26,11 @@ console.log(`나무의 견적은 ${result1} 입니다.`);
 console.log(`철의 견적은${result2} 입니다.`);
 console.log(`플라스틱의 견적은${result3} 입니다.`);
 
-// 추가해보기
+// 추가해보기!
+let glass = { type: "glass", price: 350 };
+estimator.addUnit(glass);
+console.log(unitinfo);
+
 
 ///////////////////////
 
@@ -41,27 +45,28 @@ myFunc();
 
 // p112 예제
 let obj = {};
-obj.act = function () {
-  this.value = 'default value';
+obj.act = function () { // obj의 key : value (act : f())
+  this.value = 'default value'; // 객체 자기자신을 의미, obj의 키: 속성 (value: 'default value')
 
   function innerAct() {
     this.value = 'innerAct value'; // this.value : window의 속성으로 '문자열' 담음
-    console.log("this.value: " + this.value); // innerAct value
+    console.log("this.value: " + this.value); // innerAct value (전역 객체의 속성)
   }
 
   function innerReact(caller) {
     caller.value = "innerReact value";
-    console.log("this.value: " + this.value); // innerAct value
-    console.log("caller.value: " + caller.value); // innerReact value
+    console.log("this.value: " + this.value); // innerAct value (전역 객체의 속성)
+    console.log("caller.value: " + caller.value); // innerReact value (caller==obj 객체의 속성)
   }
   innerAct();
-  console.log("obj 객체의 this.value: " + this.value); // default value (window 전역객체)
+  console.log("obj 객체의 this.value: " + this.value); // default value (obj 객체의 속성)
 
-  innerReact(this); // obj의 value -> default value
+  innerReact(this); // obj의 value -> default value -> caller가 되면서 innerReact value
   console.log("obj 객체의 this.value: " + this.value); // innerReact value
 }
 
 obj.act();
+console.log(obj);
 
 ////////////////
 // 클로저. : 정의하는 시점(만들어진 시점)의 실행환경을 기억하는 함수
@@ -78,10 +83,10 @@ console.log(closure1()); // closure1 = ƒ () {return saying;}
 const closure2 = outerFunc('콘');
 console.log(closure2());
 
-function getCount(){
+function getCount() {
   let cnt = 1;
 
-  return function (){
+  return function () {
     cnt++;
     console.log(cnt);
   }
