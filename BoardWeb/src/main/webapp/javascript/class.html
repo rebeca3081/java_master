@@ -17,9 +17,34 @@
   <!-- <script src="js/class2.js"></script> -->
   <!-- <script src="js/class3.js"></script> -->
   <!-- <script src="js/class4.js"></script> -->
-  <script src="js/class5.js"></script>
+  <!-- <script src="js/class5.js"></script> -->
+  <!-- <script src="js/class6.js"></script> -->
+  <script type="module" src="js/class7.js"></script>
 
   <!-- <script src="js_p/class1.js"></script> -->
+  <script>
+    let ary = [1, 2, 3];
+    console.log(`ary의 합계는 ${ary.reduce((acc, item) => item + acc)}`);
+    console.log(`hello
+    nice, FontFaceSetLoadEvent,
+    안녕 ㅋㅋㅋ
+    `);
+    let day = new Date(2024, 9, 6, 6, 30, 8);
+    Date.prototype.dateFormat = function () {
+      console.log(this); // yyyy-MM-dd HH:mm:ss
+      let yyyy = this.getFullYear();
+      let MM = ('0' + (this.getMonth() + 1)).slice(-2);
+      let dd = ('0' + this.getDate()).slice(-2);
+      let HH = ('0' + this.getHours()).slice(-2);
+      let mm = ('0' + this.getMinutes()).slice(-2);
+      let ss = ('0' + this.getSeconds()).slice(-2);
+      return yyyy + '-' + MM + '-' + dd + ' ' + HH + ':' + mm + ':' + ss;
+
+    }
+
+    console.log(day.dateFormat());
+
+  </script>
 </body>
 
 </html>

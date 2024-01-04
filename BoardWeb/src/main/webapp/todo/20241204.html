@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>todo/20231229.html</title>
+  <style>
+    #show {
+      width: 350px;
+      height: 400px;
+      background: blueviolet;
+      margin-top: 20px;
+      padding: 10px;
+    }
+
+    span {
+      display: inline-block;
+      width: 100px;
+      height: 30px;
+      margin: 0 10px 10px 0;
+      background-color: lemonchiffon;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="text" name="uerValue" id="uerValue">
+  <button id="delBtn">삭제</button>
+  <div id="show">
+    <!-- 추가되게하기 -->
+  </div>
+
+  <script>
+    const words = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, laboriosam quis. Ab, corporis Sit numquam tempore illum fugit esse distinctio cum! Consequatur aperiam distinctio laboriosam, voluptatibus sunt nisi repellendus iusto?';
+
+    const wordAry = words.split(' ');
+
+    let show = document.querySelector('#show');
+
+    wordAry.reduce((acc, word)=>{
+      let span = document.createElement('span');
+      span.innerText = word;
+      acc.appendChild(span);
+      return acc;
+    }, show)
+
+    // 삭제버튼 클릭 시 해당 요소 삭제
+    document.getElementById('delBtn').addEventListener('click', function () {
+      // 사용자 입력값 == 화면상의 span요소 전체를 가져와서 sapn.remove()
+     
+      let inputText = document.querySelector('input[name=uerValue]').value;
+      let sapnAll = document.querySelectorAll('span'); // 배열타입으로 가져옴
+      // console.log(sapnAll);
+
+      sapnAll.forEach(function (sapn){
+        if(inputText == sapn.innerText){
+          sapn.remove();
+        }
+      })
+
+      // 사용자 입력화면 초기화
+      document.querySelector('#uerValue').value = '';
+      document.querySelector('#uerValue').focus();
+      
+    })
+
+
+
+  </script>
+</body>
+
+</html>
