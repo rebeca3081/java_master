@@ -1,12 +1,15 @@
 package com.yedam.common;
 
-import com.yedam.member.service.MemberService;
-import com.yedam.member.serviceImpl.MemberServiceImpl;
-import com.yedam.member.vo.MemberVO;
+import com.yedam.reply.service.ReplyService;
+import com.yedam.reply.serviceImpl.ReplyServiceImpl;
 
 // 테스트용
 public class MainExe {
 	public static void main(String[] args) {
+		ReplyService svc = new ReplyServiceImpl();
+		svc.replyListPaging(4, 1).forEach(reply -> System.out.println(reply));
+		
+		/*
 		// Member 로그인 테스트
 		MemberService svc = new MemberServiceImpl();
 		MemberVO vo = svc.login("user1", "1111");
@@ -17,6 +20,7 @@ public class MainExe {
 		}else {
 			System.out.println("id, pw 확인");
 		}
+		*/
 		
 		
 		

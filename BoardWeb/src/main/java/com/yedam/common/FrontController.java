@@ -22,6 +22,9 @@ import com.yedam.member.command.GetMemberControl;
 import com.yedam.member.command.LoginControl;
 import com.yedam.member.command.LoginFormControl;
 import com.yedam.member.command.MemberListControl;
+import com.yedam.reply.command.AddReplyJson;
+import com.yedam.reply.command.DelReplyJson;
+import com.yedam.reply.command.ReplyListJson;
 import com.yedam.student.command.StudentInfoControl;
 import com.yedam.student.command.StudentListControl;
 
@@ -63,6 +66,12 @@ public class FrontController extends HttpServlet {
 		// tiles 관련
 		map.put("/studentList.do", new StudentListControl()); // 학생 목록
 		map.put("/studentInfo.do", new StudentInfoControl()); // 학생 단건조회 ?sno=23-001
+		
+		// 댓글 관련 (json 포맷의 데이터를 생성해서 반환)
+		map.put("/replyListJson.do", new ReplyListJson()); // 댓글 목록
+		map.put("/delReplyJson.do", new DelReplyJson()); // 댓글 삭제
+		map.put("/addReplyJson.do", new AddReplyJson()); // 댓글 등록
+		
 		
 		
 		

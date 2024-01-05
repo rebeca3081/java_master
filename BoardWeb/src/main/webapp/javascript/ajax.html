@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ajax.html</title>
+</head>
+
+<body>
+  <h3>client</h3>
+
+  <table border="1">
+    <thead id="theader">
+      <tr>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>이메일</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <script>
+    const filed = ['id', 'first_name', 'email'];
+    const xhtp = new XMLHttpRequest();
+    // xhtp.open('get', 'data.json'); // 서버에 요청할 페이지.(.json)
+    xhtp.open('get', 'dataset.xml'); // 서버에 요청할 페이지.(.xml)
+    xhtp.send();
+    // onload : load 이벤트가 발생하면, 요청한 페이지가 로딩되면
+    xhtp.onload = function (){
+      let doc = xhtp.responseXML; // responseXML: document > children 하위에 태그가 있음
+      doc.querySelectorAll('record').forEach(recode => {
+        console.log(recode.children[0].innerHTML);
+      })
+    }
+
+    function makeJSON() {
+      let data = JSON.parse(xhtp.responseText);
+      console.log(data);
+
+      let tbody = document.querySelector('#tbody');
+
+      data.forEach(item => {
+        let tr = document.createElement('tr');
+        filed.forEach(filed => {
+          let td = document.createElement('td');
+          td.innerText = item[filed];
+          tr.appendChild(td);
+        })
+        tbody.appendChild(tr);
+      });
+    }
+  </script>
+</body>
+
+</html>

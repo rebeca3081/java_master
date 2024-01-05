@@ -57,13 +57,66 @@
 		</tbody>
 	</table>
 </form>
-${logName } vs ${vo.writer }
 <br>
+<p>댓글내용 : <input type="text" id="content"> <button id="addReply">등록</button></p>
+<div id="show">
+	<h5>댓글목록</h5>
+	<ul id="list">
+	</ul>
+</div>
+
 <a href="boardList.do">글목록이동</a>
+
+<script src="js/service.js"></script>
+
 <script>
 	function deleteFun() {
-		console.log(window);
+		// console.log(window);
 		document.forms.myForm.action = "removeForm.do";
 		document.forms.myForm.submit();
 	}
+	const bno = ${vo.boardNo };
+	let ul = document.querySelector('#list');
+	
+	// Ajax 호출. : DB처리, 화면처리
+	const xhtp = new XMLHttpRequest();
+	xhtp.open('get', 'replyListJson.do?bno='+bno);
+	xhtp.send(); // 데이터 요청
+	xhtp.onload = function () {
+		let data = JSON.parse(xhtp.responseText); // JSON 문자열 -> Javascript 객체로 변환
+		data.forEach(reply => {
+			let li = makeLi(reply);			
+			ul.appendChild(li);
+		})
+		//console.log(xhtp.responseText);
+	}
+	
+	// 등록버튼 클릭 이벤트 생성.
+	// document.querySelector('#addReply').addEventListener('click', function() {});
+	
+	document.querySelector('#addReply').onclick = function() {
+		let reply = document.querySelector('#content').value;
+		let replyer = '${logId }';
+		
+		const addAjax = new XMLHttpRequest();
+		addAjax.open('get', 'addReplyJson.do?reply='+reply+'&replyer='+replyer+'&bno='+bno);
+		addAjax.send();
+		addAjax.onload = function () {
+			console.log(addAjax.responseText);
+			let result = JSON.parse(addAjax.responseText);
+			if(result.retCode == 'OK'){
+				alert('댓글등록됨.');
+				let reply = result.vo
+				let li = makeLi(reply); // 함수생성부분
+				ul.appendChild(li);
+				
+				document.querySelector('#content').value = '';
+			} else if(result.retCode == 'NG'){
+				alert('처리중 에러.');
+			}
+		}
+		// console.log(reply, replyer);
+	}
+	
+	
 </script>
