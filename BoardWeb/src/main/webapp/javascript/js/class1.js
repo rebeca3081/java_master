@@ -18,7 +18,7 @@ class Member {
   showTitle() { // 메소드
     this.titles.forEach(item => {
       console.log(item);
-    })
+    });
     return undefined; // 반환값 기본 -> undefined
   };
   showInfo() { // 메소드
@@ -29,6 +29,6 @@ class Member {
 // 프로토타입으로 메소드를 구현하기
 Member.prototype.showName = function () {
   return `이름은 ${this.name}입니다.`;
-}
+};
 const obj2 = new Member('홍길동', 20);
 console.log(obj2.showName());

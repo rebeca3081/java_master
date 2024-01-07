@@ -24,9 +24,8 @@ const ary3 = [...ary1, ...args];
 console.log(ary3);
 
 // 펼침 연산자를 통해 객체연결 -> 새로운 객체에 담아줌
-const obj1 = { name: "Hong", age: 20 }
-const obj2 = { name: "Hwang", height: 170 }
-
+const obj1 = { name: "Hong", age: 20 };
+const obj2 = { name: "Hwang", height: 170 };
 const obj3 = { ...obj1, ...obj2 }; // 같은 속성은 마지막 객체로 덮어쓰기, 새로운 속성은 누적
 console.log(obj3);
 

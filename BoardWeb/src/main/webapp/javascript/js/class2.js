@@ -20,15 +20,12 @@ class Calendar {
   constructor(year, month) { // 생성자
     this.year = year;
     this.month = month;
-  }
-
+  };
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat']; // 필드
-  
   makeCalendar() { // 메소드
     this.makeTitle(document.querySelector('#theader'));
     this.makeBody(document.getElementById('tbody'));
-  }
-  
+  };
   makeTitle(pos) { // 메소드
     let tr = document.createElement('tr');
     this.days.forEach(function (day) {
@@ -37,8 +34,7 @@ class Calendar {
       tr.appendChild(th);
     })
     pos.appendChild(tr);
-  }
-
+  };
   makeBody(pos = {}) { // 메소드
     let tr = document.createElement('tr');
     // 공백
@@ -71,18 +67,15 @@ class Calendar {
       }
     }
     pos.appendChild(tr);
-  }
-
+  };
   getFirstDay() { // 메소드
     // 요일에 따라 => 1일의 위치 (공백이 몇개인지 반환)// 
     return new Date(this.year, this.month - 1, 1).getDay(); //(1일)첫째 날 들고오기
-  } // end of getFirstDay
-
+  }; // end of getFirstDay
   getLastDate() { // 메소드
     return new Date(this.year, this.month, 0).getDate(); // 마지막 날 들고오기
-  } // end of getLastDate
-
-} // end of class
+  }; // end of getLastDate
+}; // end of class
 const cal = new Calendar(year, month);
 cal.makeCalendar();
 

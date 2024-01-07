@@ -16,25 +16,28 @@ public class ReplyListJson implements Control {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		// Json 데이터를 생성해서 반환.
-		// JSON = [{"replyNo":4, "boardNo":2, "reply":"아자아자! 빠쑝!", "replyer":"user1", ...},{},...{}]
+		// JSON = [{"replyNo":4, "boardNo":2, "reply":"아자아자! 빠쑝!", "replyer":"user1",
+		// ...},{},...{}]
 		resp.setContentType("text/json;charset=utf-8");
 		String bno = req.getParameter("bno");
 		String page = req.getParameter("page");
 		
+		page = "1";
+
 		ReplyService svc = new ReplyServiceImpl();
 		List<ReplyVO> list = svc.replyListPaging(Integer.parseInt(bno), Integer.parseInt(page));
 
 		int cnt = list.size(); // 데이터 건수
+		// {"page": page},
 		String json = "[";
+		json += "{\"page\":" + page + "},";
 		for (int i = 0; i < cnt; i++) {
 			json += "{\"replyNo\":" + list.get(i).getReplyNo() + ",\"boardNo\":" + list.get(i).getBoardNo()
-					+ ",\"reply\":\"" + list.get(i).getReply() + "\",\"name\":\"" + list.get(i).getName() 
-					+ "\"}";
+					+ ",\"reply\":\"" + list.get(i).getReply() + "\",\"name\":\"" + list.get(i).getName() + "\"}";
 			if (i != cnt - 1) { // 마지막 건수가 아니면 ',' 반복해서 달기, 마지막이면 안달기
 				json += ",";
 			}
 		}
-
 		json += "]";
 
 		// 출력스트림

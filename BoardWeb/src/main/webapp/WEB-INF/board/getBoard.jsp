@@ -77,12 +77,13 @@
 	}
 	const bno = ${vo.boardNo };
 	let ul = document.querySelector('#list');
-	
 	// Ajax 호출. : DB처리, 화면처리
 	const xhtp = new XMLHttpRequest();
 	xhtp.open('get', 'replyListJson.do?bno='+bno);
 	xhtp.send(); // 데이터 요청
 	xhtp.onload = function () {
+		console.log(xhtp.responseText);
+		console.log(xhtp);
 		let data = JSON.parse(xhtp.responseText); // JSON 문자열 -> Javascript 객체로 변환
 		data.forEach(reply => {
 			let li = makeLi(reply);			
