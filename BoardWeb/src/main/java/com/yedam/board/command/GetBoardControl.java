@@ -11,6 +11,7 @@ import com.yedam.board.service.BoardService;
 import com.yedam.board.serviceImpl.BoardServiceMybatis;
 import com.yedam.board.vo.BoardVO;
 import com.yedam.common.Control;
+import com.yedam.reply.vo.PageDTO;
 
 public class GetBoardControl implements Control {
 
@@ -21,8 +22,12 @@ public class GetBoardControl implements Control {
 
 		BoardService svc = new BoardServiceMybatis();
 		BoardVO vo = svc.getBoard(Integer.parseInt(bno));
+		
+		int totalCnt = 70;
+		PageDTO dto = new PageDTO(1, totalCnt);
 
 		req.setAttribute("vo", vo);
+		req.setAttribute("page", dto);
 
 		// 페이지를 이동(forward)
 		// 사용자가 URL을 입력시 "board/getBoard.tiles"페이지 재이동

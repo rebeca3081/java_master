@@ -1,5 +1,6 @@
 package com.yedam.reply.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.yedam.reply.vo.ReplyVO;
@@ -11,4 +12,9 @@ public interface ReplyService {
 	boolean removeReply(int replyNo); // 댓글 삭제
 	boolean addReply(ReplyVO vo); // 댓글 추가
 	ReplyVO getReply(int replyNo); // 조회
+	
+	int getTotalCnt(int boardNo); // 전체건수 계산.
+	
+	List<HashMap<String, Object>> chatData();
+	
 }

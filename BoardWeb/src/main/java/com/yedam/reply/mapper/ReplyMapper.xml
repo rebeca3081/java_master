@@ -10,8 +10,8 @@
 		from reply r
 		join member m
 		on r.replyer = m.id
-		where board_no
-		=#{boardNo} order by 1
+		where board_no=#{boardNo} 
+		order by 1 desc;
 	</select>
 
 	<delete id="deleteReply" parameterType="int">
@@ -50,5 +50,17 @@
 		  <![CDATA[
 		where b.rn > (#{page}-1)*5 and b.rn <= #{page}*5		  
 		  ]]>
+	</select>
+	
+	<select id="selectCount" resultType="int" parameterType="int">
+		select count(*) from reply where board_no = #{boardNo}
+	</select>
+	
+	<select id="selectReplyCnt" resultType="hashmap">
+		select name "name", count(*) "cnt"
+		from reply r
+		join member m
+		on r.replyer = m.id
+		group by name
 	</select>
 </mapper>

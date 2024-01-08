@@ -22,7 +22,7 @@ public class ReplyListJson implements Control {
 		String bno = req.getParameter("bno");
 		String page = req.getParameter("page");
 		
-		page = "1";
+		page = page == null ? "1" : page; // page값 없으면 "1" 있으면 page값
 
 		ReplyService svc = new ReplyServiceImpl();
 		List<ReplyVO> list = svc.replyListPaging(Integer.parseInt(bno), Integer.parseInt(page));
@@ -30,7 +30,6 @@ public class ReplyListJson implements Control {
 		int cnt = list.size(); // 데이터 건수
 		// {"page": page},
 		String json = "[";
-		json += "{\"page\":" + page + "},";
 		for (int i = 0; i < cnt; i++) {
 			json += "{\"replyNo\":" + list.get(i).getReplyNo() + ",\"boardNo\":" + list.get(i).getBoardNo()
 					+ ",\"reply\":\"" + list.get(i).getReply() + "\",\"name\":\"" + list.get(i).getName() + "\"}";
