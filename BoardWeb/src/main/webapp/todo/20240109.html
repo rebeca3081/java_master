@@ -35,18 +35,22 @@
 			
 			// 선택 삭제 클릭하면 이벤트 등록.
 			$('#delSelected').on('click', function () {
-				$(':checked').parentsUntil('#list').remove(); // .parent().parent()
 				// 전체 체크하는 박스 하위에 있는 요소는 삭제
+				$('input:not(#checkAll):checked').parentsUntil('#list').remove(); // .parent().parent()
+				$('#checkAll:checked').prop('checked', false); // 전체체크박스 해제
+				
 			})
 			
 			// 전체선택 이벤트 등록.
 			$('#checkAll').on('click', function () {
-				$('#list').find('input').attr('checked', 'checked');
-				$('#list').find('input').attr('checked', '');
-				
-			}).change();
+				if($('#checkAll').prop('checked')){ // 전체 선택이 체크가 되어있으면
+					$('#list').find('input').prop('checked', true); // tbody 하위 input도 체크
+				} else { // 전체체크 해제시
+					$('#list').find('input').prop('checked', false); // tbody 하위 input도 체크해제
+				}
+			})
 			
-        })
+        }) // end of ready()
     </script>
 </head>
 
