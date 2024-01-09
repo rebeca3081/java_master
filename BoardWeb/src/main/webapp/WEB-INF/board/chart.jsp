@@ -17,21 +17,11 @@
     	  result.forEach(item => {
     		  chartData.push([item.name, item.cnt]);
     	  })
-   		  google.charts.setOnLoadCallback(drawChart);
+  		  google.charts.setOnLoadCallback(drawChart);
       }
 
       function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7],
-          ['게임하기',   4]
-        ]);
-
+        var data = google.visualization.arrayToDataTable(chartData);
         var options = {
           title: 'My Daily Activities'
         };

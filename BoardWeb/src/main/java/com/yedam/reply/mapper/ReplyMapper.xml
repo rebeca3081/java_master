@@ -11,7 +11,7 @@
 		join member m
 		on r.replyer = m.id
 		where board_no=#{boardNo} 
-		order by 1 desc;
+		order by 1
 	</select>
 
 	<delete id="deleteReply" parameterType="int">
@@ -33,7 +33,8 @@
 		join member m
 		on r.replyer = m.id
 		where
-		reply_no =#{replyNo} order by 1
+		reply_no =#{replyNo} 
+		order by 1
 	</select>
 
 	<select id="replyListPaging" resultType="reply">
@@ -45,7 +46,7 @@
 		join member m
 		on r.replyer = m.id
 		where board_no =#{boardNo}
-		order by 1
+		order by 1 desc
 		) a ) b
 		  <![CDATA[
 		where b.rn > (#{page}-1)*5 and b.rn <= #{page}*5		  

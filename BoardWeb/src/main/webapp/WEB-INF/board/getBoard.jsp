@@ -93,8 +93,8 @@
 <script src="js/service.js"></script>
 
 <script>
+	// 댓글 삭제
 	function deleteFun() {
-		// console.log(window);
 		document.forms.myForm.action = "removeForm.do";
 		document.forms.myForm.submit();
 	}
@@ -117,7 +117,7 @@
 	}
 	
 	// 페이지 목록(데이터를 보여주는 부분)
-	function showList(page) {
+	function showList_backup(page) {
 		ul.innerHTML = ''; // 댓글 목록 초기화
 		// Ajax 호출. : DB처리, 화면처리
 		const xhtp = new XMLHttpRequest();
@@ -130,7 +130,22 @@
 				ul.appendChild(li);
 			})
 		}
-	} // end of showList()
+	} // end of showList_backup()
+	
+	// fetch 사용해서 ajax 변경
+	function showList(page) {
+		ul.innerHTML = ''; // 댓글 목록 초기화
+		fetch('replyListJson.do?bno=' + bno + '&page=' + page)
+		.then(str => str.json())
+		.then(result => {
+			// console.log(result);
+			result.forEach(reply => {
+				let li = makeLi(reply);
+				ul.appendChild(li);
+			})
+		})
+		.catch(reject => console.log(reject));
+	}
 	showList(pageInfo); //  함수호출(실제 값);
 	
 	
@@ -188,25 +203,55 @@
 		let reply = document.querySelector('#content').value;
 		let replyer = '${logId }';
 		
-		const addAjax = new XMLHttpRequest();
-		addAjax.open('get', 'addReplyJson.do?reply='+reply+'&replyer='+replyer+'&bno='+bno);
-		addAjax.send();
-		addAjax.onload = function () {
-			// console.log(addAjax.responseText);
-			let result = JSON.parse(addAjax.responseText);
+		// fetch 함수 (댓글등록)
+		fetch('addReplyJson.do',{
+			method: 'post',
+			headers: {
+				'Content-type': 'application/x-www-form-urlencoded'
+			},
+			body: 'reply='+reply+'&replyer='+replyer+'&bno='+bno
+		})
+		.then(str => str.json())
+		.then(result =>{
+			console.log(result);
 			if(result.retCode == 'OK'){
-				alert('댓글등록됨.');
-				// let reply = result.vo
-				// let li = makeLi(reply); // 함수생성부분
-				//ul.appendChild(li);
+				alert('처리성공.');
+				pageInfo = 1;
 				showList(pageInfo); // 등록시 내림차순으로 목록 보이기
+				pagingList();
 				
 				document.querySelector('#content').value = '';
+				
 			} else if(result.retCode == 'NG'){
 				alert('처리중 에러.');
 			}
-		}
-		// console.log(reply, replyer);
+		})
+		.catch(err => console.error(err));
+		
+		/* // Ajax를 이용한 댓글 등록
+		const addAjax = new XMLHttpRequest();
+		addAjax.open('post', 'addReplyJson.do');
+		addAjax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		addAjax.send('reply='+reply+'&replyer='+replyer+'&bno='+bno);
+		addAjax.onload = function () {
+			let result = JSON.parse(addAjax.responseText);
+			if(result.retCode == 'OK'){
+				// let reply = result.vo
+				// let li = makeLi(reply);
+				//ul.appendChild(li);
+				alert('댓글등록됨.');
+				pageInfo = 1;
+				showList(pageInfo); // 등록시 내림차순으로 목록 보이기로 변경함
+				pagingList();
+				
+				document.querySelector('#content').value = '';
+				
+			} else if(result.retCode == 'NG'){
+				alert('처리중 에러.');
+			}
+		} // end of onload.
+		*/
+		
 	}
 	
 	
