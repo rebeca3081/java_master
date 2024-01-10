@@ -21,7 +21,11 @@ import com.yedam.board.command.RemoveFormControl;
 import com.yedam.member.command.GetMemberControl;
 import com.yedam.member.command.LoginControl;
 import com.yedam.member.command.LoginFormControl;
+import com.yedam.member.command.MemberAddJson;
+import com.yedam.member.command.MemberDelJson;
+import com.yedam.member.command.MemberListAjax;
 import com.yedam.member.command.MemberListControl;
+import com.yedam.member.command.MemberListJson;
 import com.yedam.reply.command.AddReplyJson;
 import com.yedam.reply.command.ChartForm;
 import com.yedam.reply.command.Covid19Form;
@@ -67,6 +71,12 @@ public class FrontController extends HttpServlet {
 		// 관리자
 		map.put("/memberList.do", new MemberListControl()); // 회원 목록
 		map.put("/getMember.do", new GetMemberControl()); // 회원 상세
+		map.put("/memberListAjax.do", new MemberListAjax());
+		
+		// 회원관련 데이터(JSON)
+		map.put("/memberListJson.do", new MemberListJson()); // 목록
+		map.put("/memberAddJson.do", new MemberAddJson()); // 등록
+		map.put("/memberDelJson.do", new MemberDelJson()); // 삭제
 		
 		// tiles 관련
 		map.put("/studentList.do", new StudentListControl()); // 학생 목록

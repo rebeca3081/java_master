@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test2</title>
+</head>
+<body>
+<!--문제2 -->
+<table border="1">
+    <thead id="theader"></thead>
+    <tbody id="tbody"></tbody>
+</table>
+
+<!-- 2024년 1월 달력을 출력하세요. cal.show() 메소드를 호출. -->
+<script>
+	// 객체 사용
+	const novemberCal ={
+		days: ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT'],
+		
+		// 메인 호출 함수
+		show: function (month) {
+			this.makeTitle(this.days, document.querySelector('#theader'));
+		},
+		makeTitle: function (days, posi) {
+			let tr = document.createElement('tr');
+			days.forEach(function (day) {
+				let th = document.createElement('th');
+				th.innerHTML = day;
+				tr.appendChild(th);
+			})
+			posi.appendChild(tr);
+		},
+		makeBody: function (posi) {
+			let tr = document.createElement('tr');
+			// 공백 만들기
+			let sapce = this.getFristDay(month);
+			for(let i = 0; i < sapce; i++){
+				let td = document.createElement('td');
+				td.innerText = '';
+				tr.appendChild(td);
+			}
+			// 날짜 만들기
+			
+			
+			
+		},
+		getFristDay (month) { // 월 입력 => 1일의 위치에 공백이 몇개인지 반환
+			switch (month) {
+		      case 1:
+		        return 1;
+		      case 2:
+		        return 4;
+		      case 3:
+		        return 5;
+		    }
+		},
+		getLastDate (month) { // 월 입력 =>  마지막날 반환, 1월 -> 31일
+			if (month == 4 | month == 6 | month == 9 | month == 11) {
+		      return 30;
+		    } else if (month == 2) {
+		      return 29;
+		    } else {
+		      return 31;
+		    }
+		}
+	} // end of 
+	novemberCal.show(1); // body 영역 어디든 문서에 출력되게 하기
+</script>
+</body>
+</html>
