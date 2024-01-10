@@ -17,7 +17,7 @@ public class BookListJson implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		// 
+		// 목록 데이터
 		BookService svc = new BookServiceImpl();
 		
 		List<BookVO> list = svc.bookList();

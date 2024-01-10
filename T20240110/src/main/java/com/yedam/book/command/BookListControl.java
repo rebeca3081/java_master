@@ -18,9 +18,9 @@ public class BookListControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		// 페이지 이동
 		resp.setContentType("text/html;charset=utf-8");
 				
-		
 		try {
 			req.getRequestDispatcher("todo/bookList.jsp").forward(req, resp);
 		} catch (ServletException | IOException e) {

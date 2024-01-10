@@ -3,10 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>test2</title>
+<style>
+	
+	tr, td {
+		padding : 10px;
+		border: 1px solid #eee;
+	}
+	h3 {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 <!--문제2 -->
-<table border="1">
+<h3></h3>
+<table>
     <thead id="theader"></thead>
     <tbody id="tbody"></tbody>
 </table>
@@ -15,11 +26,13 @@
 <script>
 	// 객체 사용
 	const novemberCal ={
-		days: ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT'],
+		days: ['일', '월', '화', '수', '목', '금', '토'],
 		
 		// 메인 호출 함수
 		show: function (month) {
 			this.makeTitle(this.days, document.querySelector('#theader'));
+			this.makeBody(month, document.querySelector('#tbody'));
+			document.querySelector('h3').innerHTML = month + '<span />월 달력';
 		},
 		makeTitle: function (days, posi) {
 			let tr = document.createElement('tr');
@@ -30,8 +43,9 @@
 			})
 			posi.appendChild(tr);
 		},
-		makeBody: function (posi) {
+		makeBody: function (month, posi = {}) {
 			let tr = document.createElement('tr');
+			
 			// 공백 만들기
 			let sapce = this.getFristDay(month);
 			for(let i = 0; i < sapce; i++){
@@ -39,9 +53,29 @@
 				td.innerText = '';
 				tr.appendChild(td);
 			}
+			
 			// 날짜 만들기
-			
-			
+			let lastDate = this.getLastDate(month);
+			for(let i = 1; i <= lastDate; i++){
+				let td = document.createElement('td');
+				td.innerText = i;
+				
+				if ((sapce + i) % 7 == 0) { // 토요일
+			    	td.setAttribute('style', "background-color:lightblue; font-weight:bold;");
+			    } else if ((sapce + i - 1) % 7 == 0) { // 일요일
+			    	td.setAttribute('style', "background-color:pink; font-weight:bold;");
+			    }
+				
+				tr.appendChild(td);
+				
+				// 7일마다 잘라주기
+				if((sapce + i) % 7 == 0) {
+					posi.appendChild(tr);
+					tr = document.createElement('tr');
+				}
+				
+			}
+			posi.appendChild(tr);
 			
 		},
 		getFristDay (month) { // 월 입력 => 1일의 위치에 공백이 몇개인지 반환
@@ -64,7 +98,7 @@
 		    }
 		}
 	} // end of 
-	novemberCal.show(1); // body 영역 어디든 문서에 출력되게 하기
+	novemberCal.show(2); // body 영역 어디든 문서에 출력되게 하기
 </script>
 </body>
 </html>

@@ -31,16 +31,23 @@
 	    xhtp.send();
 	    xhtp.onload = function() {
 	  	  let result = JSON.parse(xhtp.responseText);
-	  	  console.log(result);
+	  	  // console.log(result);
 	  	  
-	  	  result.forEach(books => {
+	  	  result.forEach((books, idx) => {
 	  		//console.log(books.bookCode);
+	  		
+	  		// console.log(idx);
+	  		
 	  		
 	  		let tr = document.createElement('tr');
 	  		heads.forEach(head => {
 	  			let td = document.createElement('td');
 		  		td.innerText = books[head];
 		  	  	tr.appendChild(td);
+		  	  	
+		  	  	if(idx % 2 == 0){
+		  	  		tr.setAttribute('style', "background-color:#eee;");
+		  		}
 	  		})
 	  		document.querySelector('#list').appendChild(tr);
 	  		
@@ -48,20 +55,6 @@
 	  	  
 	    }
 	    
-	    
-	
-		
-		/*
-		fetch('bookList.do', {
-			method: 'get',
-			headers: {
-				'Content-type': 'json'
-			}
-		})
-		.then(result => {
-			console.log(result.json());
-		})
-		*/
 	
 	</script>
 	

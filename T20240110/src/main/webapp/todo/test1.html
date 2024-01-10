@@ -20,8 +20,8 @@
 			// console.log(json[0].salary)
 			json.forEach((item, idx)  => {
 				// console.log(json[idx].salary);
-				if(json[idx].salary > 4500){
-				targetAry.push(json[idx]);		
+				if(json[idx].gender == 'Female' && json[idx].salary > 4500){
+					targetAry.push(json[idx]);		
 				}
 			})
 			
