@@ -22,8 +22,8 @@
     });
     
     // 영화감독 이름 출력
-    // movieCd: "20235253"
-    const url2 = '	http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=f5eef3421c602c6cb7ea224104795888&movieCd=20235253';
+    const movieCd = "20235253";
+    const url2 = '	http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=f5eef3421c602c6cb7ea224104795888&movieCd=' + movieCd;
 
     fetch(url2)
     .then(result => result.json())

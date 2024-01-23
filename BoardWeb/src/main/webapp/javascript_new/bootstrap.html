@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <!-- Content here -->
+    <div class="row">
+      <div class="col-lg-6 p-2">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>순위</th>
+              <th>영화명</th>
+              <th>개봉일자</th>
+            </tr>
+          </thead>
+          <tbody id="mlist">
+            
+
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-6 border-start p-2">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title mdtitle">영화제목</h5>
+            <p class="card-text">영화설명...</p>
+            <a href="#" class="btn btn-primary">더보기</a>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">상영시간 : <span class="mtime"></span></li>
+            <li class="list-group-item">개봉일자 : <span class="mdate"></span></li>
+            <li class="list-group-item">감독 : <span class="director"></span></li>
+            <li class="list-group-item">배우 : <span class="actor"></span></li>
+          </ul>
+          <div class="card-footer">
+            Card footer
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function movieBoxList() {
+      const url = 'https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=f5eef3421c602c6cb7ea224104795888&targetDt=20240110';
+  
+      fetch(url)
+      .then(result => result.json())
+      .then(result => {
+        const list = result.boxOfficeResult.dailyBoxOfficeList;
+        list.forEach(ele => {
+          //console.log(ele.movieNm);
+          const newtr = `<tr>
+                          <td>${ele.rank}</td>
+                          <td class="mtitle" data-mcode="${ele.movieCd}" onclick="movieinfo()">${ele.movieNm}</td>
+                          <td>${ele.openDt}</td>
+                        </tr>`;
+          mlist.insertAdjacentHTML("beforeend", newtr); // id 값('#')은 바로 접근이 가능함~! 
+        });
+      });
+
+    }
+
+    function movieinfo() {
+      const movieCd = event.target.dataset.mcode;
+      // console.log(movieCd);
+      const url2 = '	http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=f5eef3421c602c6cb7ea224104795888&movieCd=' + movieCd;
+
+      fetch(url2)
+      .then(result => result.json())
+      .then(result => {
+        console.log(result);
+        const moveInfos =  result.movieInfoResult.movieInfo;
+
+        const director = moveInfos.directors[0].peopleNm;
+        document.querySelector(".director").innerHTML = director;
+
+        const time = moveInfos.showTm;
+        document.querySelector(".mtime").innerHTML = time;
+
+        const date = moveInfos.openDt;
+        document.querySelector(".mdate").innerHTML = date;
+
+        const actor = moveInfos.actors[0].peopleNm;
+        document.querySelector(".actor").innerHTML = actor;
+
+        const title = moveInfos.movieNm;
+        console.log(title);
+        document.querySelector(".mdtitle").innerHTML = title;
+      })
+    }
+    movieBoxList();
+  </script>
+</body>
+</html>
